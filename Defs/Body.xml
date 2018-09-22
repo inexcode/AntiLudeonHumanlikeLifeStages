@@ -84,8 +84,6 @@
             <li>
                 <statOffsets>
                     <UnskilledLaborSpeed>.0133</UnskilledLaborSpeed>
-                    <MeatAmount>.02</MeatAmount>
-                    <CarryingCapacity>.02</CarryingCapacity>
                 </statOffsets>
             </li>
         </stages>

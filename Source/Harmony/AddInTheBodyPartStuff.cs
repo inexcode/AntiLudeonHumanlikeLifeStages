@@ -10,8 +10,6 @@ namespace HumanlikeLifeStages
     {
         public static void Postfix()
         {
-            Log.Message("Adding HumanLike Life Stages Defs");
-            
             var fleshRaces = DefDatabase<ThingDef>
                 .AllDefsListForReading
                 .Where(t => t.race?.IsFlesh ?? false); // return this.FleshType != FleshTypeDefOf.Mechanoid;

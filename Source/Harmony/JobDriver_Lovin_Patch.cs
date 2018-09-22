@@ -45,10 +45,10 @@ namespace HumanlikeLifeStages.Harmony
 
         public static bool is_fertile(Pawn pawn)
         {
-            return getFetility(pawn) > 0.001;
+            return GetFertility(pawn) > 0.001;
         }
 
-        public static float getFetility(Pawn pawn)
+        public static float GetFertility(Pawn pawn)
         {
             float val;
             if (alreadyPregnant(pawn))

@@ -12,7 +12,6 @@ namespace HumanlikeLifeStages
             if (pawn?.gender == Gender.None || pawn?.gender == null ||
                 !Recipe_Neuter.PartsToApplyOn(pawn).Any())
             {
-                Log.Message("Skipping Puberty Click");
                 return;
             }
 
@@ -62,13 +61,8 @@ namespace HumanlikeLifeStages
                     }
                 }
             }
-            else
-            {
-                Log.Message("Delaying Puberty...");
-            }
         }
-
-
+        
         public static float isPostPubescence(HediffSet diffSet)
         {
             var heDiffs = diffSet.hediffs.Where(x => x.def == HediffDefOf.LifeStages_Youth);
