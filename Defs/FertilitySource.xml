@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <BodyPartTagDef>
+    <defName>FertilitySource</defName>
+  </BodyPartTagDef>
+
+  <PawnCapacityDef>
+    <workerClass>HumanlikeLifeStages.PawnCapacityWorker_Fertility</workerClass>
+    <defName>Fertility</defName>
+    <label>fertility</label>
+    <listOrder>200</listOrder>
+    <lethalFlesh>false</lethalFlesh>
+    <showOnMechanoids>false</showOnMechanoids>
+  </PawnCapacityDef>
+
+  <HediffDef>
+    <defName>LifeStages_Neutered</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.8, 0.8, 0.35)</defaultLabelColor>
+    <label>neutered</label>
+    <stages>
+      <li>
+        <capMods>
+          <li>
+            <capacity>Fertility</capacity>
+            <setMax>0</setMax>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>LifeStages_Infertile_BirthDefect</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.8, 0.8, 0.35)</defaultLabelColor>
+    <label>infertile</label>
+    <stages>
+      <li>
+        <capMods>
+          <li>
+            <capacity>Fertility</capacity>
+            <setMax>0</setMax>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <RecipeDef Abstract="True" Name="SurgeryFlesh">
+    <effectWorking>Surgery</effectWorking>
+    <soundWorking>Recipe_Surgery</soundWorking>
+    <workSpeedStat>MedicalOperationSpeed</workSpeedStat>
+    <workSkill>Medicine</workSkill>
+    <workSkillLearnFactor>16</workSkillLearnFactor>
+  </RecipeDef>
+
+  <RecipeDef ParentName="SurgeryFlesh">
+    <defName>HumanlikeLifeStages_Neuter</defName>
+    <label>neuter</label>
+    <description>Prevents reproduction.</description>
+    <jobString>Neutering.</jobString>
+    <workAmount>500</workAmount>
+    <hideBodyPartNames>true</hideBodyPartNames>
+    <targetsBodyPart>true</targetsBodyPart>
+    <appliedOnFixedBodyParts>
+      <li>ReproductiveOrgans</li>
+    </appliedOnFixedBodyParts>
+    <addsHediff>LifeStages_Neutered</addsHediff>
+    <isViolation>true</isViolation>
+    <workerClass>HumanlikeLifeStages.Recipe_Neuter</workerClass>
+    <ingredients>
+      <li>
+        <filter>
+          <categories>
+            <li>Medicine</li>
+          </categories>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <categories>
+        <li>Medicine</li>
+      </categories>
+    </fixedIngredientFilter>
+  </RecipeDef>
+
+  <RecipeDef ParentName="SurgeryFlesh">
+    <defName>HumanlikeLifeStages_SRS</defName>
+    <label>Sex reassignment surgery</label>
+    <description>Resolves a pawns issues with their bodies.</description>
+    <jobString>Neutering.</jobString>
+    <workAmount>500</workAmount>
+    <hideBodyPartNames>true</hideBodyPartNames>
+    <targetsBodyPart>true</targetsBodyPart>
+    <appliedOnFixedBodyParts>
+      <li>ReproductiveOrgans</li>
+    </appliedOnFixedBodyParts>
+    <addsHediff>LifeStages_Puberty</addsHediff>
+    <isViolation>false</isViolation>
+    <workerClass>HumanlikeLifeStages.Recipe_SRS</workerClass>
+    <ingredients>
+      <li>
+        <filter>
+          <categories>
+            <li>Medicine</li>
+          </categories>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <categories>
+        <li>Medicine</li>
+      </categories>
+    </fixedIngredientFilter>
+  </RecipeDef>
+</Defs>

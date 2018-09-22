@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+	<name>HumanlikeLifeStages - Age Matters 2</name>
+	<author>AliceTries</author>
+	<targetVersion>0.19.2009</targetVersion>
+	<description>Adds a childhood and puberty system to rimworld that I hope you enjoy. 
+		----
+		What?
+		- Successor to Age Matters to be used with WooHooer or Children, School and Families.
+		
+		----
+		Why?
+		This is my follow up to Age Matters mod, this mod hopes to fill in the existing gaps with progeny.
+		
+		After playing with a few other mods I've found that the aging of humanlike pawns doesnt feel right enough to me.
+			- Children are handled weakly, not considered or are a burden on the community for 12 years which is twice as long as a colony lasts me.
+			- Puberty is terrible, that really should be accounted for.
+			- there is no real system to give Pawns secondary sexual characteristics beyond just that Breast mod. Which makes physical representation of gender very unfortunately uninteresting.
+			- Gender indeterminacy is allowed for in the Verse engine but not used except sparingly by other mods which limits easily reachable transgender representation and transitioning.
+			- Possibility create eunuch cast; again with the Verse engine supporting non-binary gender. 
+		
+		
+		----
+		How this mod works?
+		- Maturity - Adds a HeDiff by age called Youth that degrades away into Puberty before becoming a full fledged adult.
+		- Sex Organs and Secondary Characteristics - Added body parts for groin, chest and reproductive organs.
+		- Adds a patch to fleshy Humanlike species to get reproductive organs and secondary characteristics. 
+		
+		----
+		Goals?
+			Alter RenderSize by age to slowly scale to pawns final height.
+		
+		
+		----
+		Notes
+		
+		This mod makes doesnt add pregnancy. If you would Like that please download my other mod Woohooer which I intended this to be its partner.
+		
+		This Mod was designed to be compatible with the other mods that grants pregnancy to Pawns, such as my other mod WooHooer; or Children, School and Families. 
+		Without it your pawns get secondary sexual characteristics and reproductive organs to get shot off by raiders,
+		
+		This does not alter birth.
+		 
+	Enjoy - Alice</description>
+	<url>https://steamcommunity.com/id/AliceTries/myworkshopfiles/?appid=294100</url>
+</ModMetaData>

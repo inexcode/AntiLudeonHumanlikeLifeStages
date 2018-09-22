@@ -1,0 +1,208 @@
+<Defs>
+    <BodyPartDef>
+        <defName>Maturity</defName>
+        <label>Maturity</label>
+        <skinCovered>false</skinCovered>
+        <conceptual>true</conceptual>
+        <destroyableByDamage>false</destroyableByDamage>
+        <canSuggestAmputation>false</canSuggestAmputation>
+    </BodyPartDef>
+
+    <!-- TA DA, Puberty -->
+
+    <HediffDef ParentName="DiseaseBase">
+        <defName>LifeStages_Puberty</defName>
+        <label>puberty</label>
+        <initialSeverity>1</initialSeverity>
+        <labelNoun>puberty</labelNoun>
+        <comps>
+            <li Class="HediffCompProperties_SeverityPerDay">
+                <severityPerDay>-0.01</severityPerDay><!-- 100 days of puberty -->
+            </li>
+        </comps>
+    </HediffDef>
+
+
+    <ThoughtDef>
+        <defName>LifeStages_Thoughts_Puberty</defName>
+        <workerClass>HumanlikeLifeStages.ThoughtWorker_Puberty_Hediff</workerClass>
+        <hediff>LifeStages_Puberty</hediff>
+        <validWhileDespawned>true</validWhileDespawned>
+        <stages>
+            <li>
+                <label>growing up</label>
+                <description>My body is changing</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li>
+                <label>hormonally uncomfortable</label>
+                <description>My body is changing!!!</description>
+                <baseMoodEffect>-10</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef>
+        <defName>LifeStages_Thoughts_Puberty_Transgendered</defName>
+        <workerClass>HumanlikeLifeStages.ThoughtWorker_Puberty_Hediff</workerClass>
+        <hediff>LifeStages_Transgendered</hediff>
+        <validWhileDespawned>true</validWhileDespawned>
+        <stages>
+            <li>
+                <label>body discomfort</label>
+                <description>My body is changing</description>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>hormonally miserable</label>
+                <description>My body is changing!!!</description>
+                <baseMoodEffect>-10</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+
+    <!-- TA DA, Babies -->
+
+    <HediffDef ParentName="DiseaseBase">
+        <defName>LifeStages_Youth</defName>
+        <label>youth</label>
+        <initialSeverity>1</initialSeverity>
+        <labelNoun>child</labelNoun>
+        <comps>
+            <li Class="HediffCompProperties_SeverityPerDay">
+                <severityPerDay>-0.00653333333</severityPerDay><!-- 14 years  compressed into 3 years -->
+            </li>
+        </comps>
+        <stages>
+            <li>
+                <label>Pre-Teen</label>
+                <restFallFactorOffset>0.2</restFallFactorOffset>
+                <hungerRateFactorOffset>0.7</hungerRateFactorOffset>
+                <capMods>
+                    <li>
+                        <capacity>Moving</capacity>
+                        <setMax>0.95</setMax>
+                    </li>
+                    <li>
+                        <capacity>Manipulation</capacity>
+                        <setMax>0.95</setMax>
+                    </li>
+                </capMods>
+                <vomitMtbDays>400</vomitMtbDays>
+            </li>
+            <li>
+                <minSeverity>0.216</minSeverity>
+                <label>Child</label>
+                <restFallFactorOffset>0.4</restFallFactorOffset>
+                <hungerRateFactorOffset>0.3</hungerRateFactorOffset>
+                <capMods>
+                    <li>
+                        <capacity>Moving</capacity>
+                        <setMax>0.85</setMax>
+                    </li>
+                    <li>
+                        <capacity>Manipulation</capacity>
+                        <setMax>0.85</setMax>
+                    </li>
+                    <li>
+                        <capacity>Talking</capacity>
+                        <setMax>0.9</setMax>
+                    </li>
+                </capMods>
+                <vomitMtbDays>40</vomitMtbDays>
+            </li>
+            <li>
+                <minSeverity>0.416</minSeverity>
+                <label>Young Child</label>
+                <restFallFactorOffset>0.8</restFallFactorOffset>
+                <hungerRateFactorOffset>0.2</hungerRateFactorOffset>
+                <capMods>
+                    <li>
+                        <capacity>Moving</capacity>
+                        <setMax>0.75</setMax>
+                    </li>
+                    <li>
+                        <capacity>Manipulation</capacity>
+                        <setMax>0.6</setMax>
+                    </li>
+                    <li>
+                        <capacity>Talking</capacity>
+                        <setMax>0.8</setMax>
+                    </li>
+                </capMods>
+                <vomitMtbDays>18</vomitMtbDays>
+            </li>
+            <li>
+                <minSeverity>0.792</minSeverity>
+                <label>Toddler</label>
+                <restFallFactorOffset>1.5</restFallFactorOffset>
+                <capMods>
+                    <li>
+                        <capacity>Moving</capacity>
+                        <setMax>0.4</setMax>
+                    </li>
+                    <li>
+                        <capacity>Manipulation</capacity>
+                        <setMax>0.1</setMax>
+                    </li>
+                    <li>
+                        <capacity>Talking</capacity>
+                        <setMax>0.25</setMax>
+                    </li>
+                </capMods>
+                <vomitMtbDays>5</vomitMtbDays>
+            </li>
+            <li>
+                <minSeverity>0.917</minSeverity>
+                <label>baby</label>
+                <restFallFactorOffset>2</restFallFactorOffset>
+                <capMods>
+                    <li>
+                        <capacity>Moving</capacity>
+                        <setMax>0.25</setMax>
+                    </li>
+                    <li>
+                        <capacity>Manipulation</capacity>
+                        <setMax>0.05</setMax>
+                    </li>
+                    <li>
+                        <capacity>Talking</capacity>
+                        <setMax>0</setMax>
+                    </li>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <setMax>0.7</setMax>
+                    </li>
+                </capMods>
+                <vomitMtbDays>2</vomitMtbDays>
+            </li>
+            <li>
+                <minSeverity>0.956</minSeverity>
+                <label>new born</label>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <setMax>0.10</setMax>
+                    </li>
+                </capMods>
+                <vomitMtbDays>0.6</vomitMtbDays>
+            </li>
+        </stages>
+    </HediffDef>
+
+    <ThoughtDef>
+        <defName>LifeStages_Thoughts_YouthHappy</defName>
+        <workerClass>ThoughtWorker_Hediff</workerClass>
+        <hediff>LifeStages_Youth</hediff>
+        <validWhileDespawned>true</validWhileDespawned>
+        <stages>
+            <li>
+                <label>simplicity of youth</label>
+                <description>No Worries!</description>
+                <baseMoodEffect>25</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+</Defs>

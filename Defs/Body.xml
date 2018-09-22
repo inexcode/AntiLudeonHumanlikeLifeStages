@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <BodyPartDef>
+        <defName>Chest</defName>
+        <label>Chest</label>
+        <skinCovered>true</skinCovered>
+    </BodyPartDef>
+
+    <BodyPartDef>
+        <defName>ReproductiveOrgans</defName>
+        <label>reproductive organs</label>
+        <skinCovered>false</skinCovered>
+        <conceptual>true</conceptual>
+        <canSuggestAmputation>false</canSuggestAmputation>
+        <tags>
+            <li>FertilitySource</li>
+        </tags>
+    </BodyPartDef>
+
+    <BodyPartDef>
+        <defName>Groin</defName>
+        <label>groin</label>
+        <skinCovered>true</skinCovered>
+        <canSuggestAmputation>false</canSuggestAmputation>
+        <tags>
+            <li>FertilitySource</li>
+        </tags>
+    </BodyPartDef>
+
+
+    <HediffDef Name="NaturalLifeStagePartBase" Abstract="True">
+        <defaultLabelColor>(0.5, 0.8, 0.5)</defaultLabelColor>
+        <isBad>false</isBad>
+        <scenarioCanAdd>true</scenarioCanAdd>
+    </HediffDef>
+
+
+    <HediffDef ParentName="NaturalLifeStagePartBase">
+        <defName>LifeStages_PubicHair</defName>
+        <label>Pubic Hair</label>
+    </HediffDef>
+
+    <HediffDef ParentName="NaturalLifeStagePartBase">
+        <defName>LifeStages_BodyHair</defName>
+        <label>Body hair</label>
+    </HediffDef>
+
+    <HediffDef ParentName="NaturalLifeStagePartBase">
+        <defName>LifeStages_NormalChest</defName>
+        <label>Flat Chested</label>
+    </HediffDef>
+
+    <HediffDef ParentName="NaturalLifeStagePartBase">
+        <defName>LifeStages_Pecs</defName>
+        <label>Pecs</label>
+    </HediffDef>
+
+    <HediffDef ParentName="NaturalLifeStagePartBase">
+        <defName>LifeStages_Breasts</defName>
+        <label>Breasts</label>
+    </HediffDef>
+
+
+    <HediffDef ParentName="NaturalLifeStagePartBase">
+        <defName>LifeStages_Womb</defName>
+        <label>Womb and Ovaries</label>
+    </HediffDef>
+
+    <HediffDef ParentName="NaturalLifeStagePartBase">
+        <defName>LifeStages_Testes</defName>
+        <label>Testes</label>
+    </HediffDef>
+
+
+    <HediffDef ParentName="NaturalLifeStagePartBase">
+        <defName>LifeStages_Transgendered</defName>
+        <label>Transgendered</label>
+        <!--<stages>
+            <li>
+                <label>Hidden</label>
+                <becomeVisible>false</becomeVisible>
+            </li>
+        </stages>-->
+    </HediffDef>
+
+
+</Defs>
