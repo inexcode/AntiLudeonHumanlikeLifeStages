@@ -16,7 +16,7 @@ namespace HumanlikeLifeStages
         }
  
         private static bool HasChestPart(Pawn pawn)
-        {
+        { 
             return pawn.health.hediffSet.hediffs.Any(x =>
                 x.def == HediffDefOf.LifeStages_Breasts
                 || x.def == HediffDefOf.LifeStages_Pecs
@@ -29,7 +29,6 @@ namespace HumanlikeLifeStages
 
             if (Rand.Value < .1f)
             {
-                Log.Message("Chests Click");
                 if (pawn.health.hediffSet.hediffs.Any(PubertyHelper.hasTestes) )
                 {
                     //more pec
@@ -38,7 +37,7 @@ namespace HumanlikeLifeStages
                 else
                 {
                     float boobGrowthChance = 0.05f;
-                    if (PubertyHelper.relaventHeDiffs(pawn.health.hediffSet).Any())
+                    if (PubertyHelper.RelaventHeDiffs(pawn.health.hediffSet).Any())
                     {
                         //ovaries keep pumping
                         boobGrowthChance = 1f;

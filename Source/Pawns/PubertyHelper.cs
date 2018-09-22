@@ -16,7 +16,7 @@ namespace HumanlikeLifeStages
                 return;
             }
 
-            var sexOrgans = relaventHeDiffs(pawn.health.hediffSet);
+            var sexOrgans = RelaventHeDiffs(pawn.health.hediffSet);
 
             if (sexOrgans.Any())
             {
@@ -84,14 +84,14 @@ namespace HumanlikeLifeStages
         public static float getFactorFertility(HediffSet diffSet)
         {
             //look for wombs
-            var heDiffs = relaventHeDiffs(diffSet);
+            var heDiffs = RelaventHeDiffs(diffSet);
 
             if (!heDiffs.Any()) return 0f;
 
             return 1f;
         }
 
-        public static IEnumerable<Hediff> relaventHeDiffs(HediffSet diffSet)
+        public static IEnumerable<Hediff> RelaventHeDiffs(HediffSet diffSet)
         {
             var heDiffs = diffSet.hediffs.Where(hasBioOrgan);
 
@@ -106,7 +106,12 @@ namespace HumanlikeLifeStages
 
         public static bool hasBioOrgan(Hediff x)
         {
-            return x.def == HediffDefOf.LifeStages_Womb || x.def == HediffDefOf.LifeStages_Testes;
+            return hasWomb(x) || hasTestes(x);
+        }
+
+        public static bool hasWomb(Hediff x)
+        {
+            return x.def == HediffDefOf.LifeStages_Womb;
         }
 
 

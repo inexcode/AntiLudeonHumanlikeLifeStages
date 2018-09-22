@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Harmony\AddInTheBodyPartStuff.cs" />
+    <Compile Include="Harmony\JobDriver_Lovin_Patch.cs" />
     <Compile Include="Harmony\ModRoot.cs" />
     <Compile Include="Harmony\PawnGenerator_GeneratePawnRelations_Patch.cs" />
     <Compile Include="HumanlikeLifeStages.cs" />

@@ -9,12 +9,7 @@ namespace HumanlikeLifeStages
 
         public override IEnumerable<BodyPartRecord> GetPartsToApplyOn( Pawn pawn, RecipeDef recipe )
         {
-            return PartsToApplyOn(pawn);
-        }
-
-        public static IEnumerable<BodyPartRecord> PartsToApplyOn(Pawn pawn)
-        {
-            if (PawnHelper.isHaveHediff(pawn, HediffDefOf.LifeStages_Transgendered) || pawn.gender == Gender.None || PawnHelper.isHaveHediff(pawn, HediffDefOf.LifeStages_Youth))
+            if (PawnHelper.isHaveHediff(pawn, HediffDefOf.LifeStages_Transgendered) || pawn.gender == Gender.None)
             {
                 return pawn.ReproductiveOrgans();
             }
@@ -52,7 +47,7 @@ namespace HumanlikeLifeStages
                     pawn.health.RemoveHediff(hediff);
                 
                 
-                if (HediffDefOf.LifeStages_Womb != null && hediff.def == HediffDefOf.LifeStages_BodyHair && Rand.Bool)
+                if (HediffDefOf.LifeStages_BodyHair != null && hediff.def == HediffDefOf.LifeStages_BodyHair && Rand.Bool)
                     pawn.health.RemoveHediff(hediff);
             }
         }

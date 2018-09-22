@@ -34,17 +34,6 @@
         <scenarioCanAdd>true</scenarioCanAdd>
     </HediffDef>
 
-
-    <HediffDef ParentName="NaturalLifeStagePartBase">
-        <defName>LifeStages_PubicHair</defName>
-        <label>Pubic Hair</label>
-    </HediffDef>
-
-    <HediffDef ParentName="NaturalLifeStagePartBase">
-        <defName>LifeStages_BodyHair</defName>
-        <label>Body hair</label>
-    </HediffDef>
-
     <HediffDef ParentName="NaturalLifeStagePartBase">
         <defName>LifeStages_NormalChest</defName>
         <label>Flat Chested</label>
@@ -53,35 +42,84 @@
     <HediffDef ParentName="NaturalLifeStagePartBase">
         <defName>LifeStages_Pecs</defName>
         <label>Pecs</label>
+        <stages>
+            <li>
+                <statOffsets>
+                    <SocialImpact>.01</SocialImpact>
+                </statOffsets>
+            </li>
+        </stages>
     </HediffDef>
 
     <HediffDef ParentName="NaturalLifeStagePartBase">
         <defName>LifeStages_Breasts</defName>
         <label>Breasts</label>
+        <stages>
+            <li>
+                <statOffsets>
+                    <SocialImpact>.01</SocialImpact>
+                </statOffsets>
+            </li>
+        </stages>
     </HediffDef>
 
 
     <HediffDef ParentName="NaturalLifeStagePartBase">
         <defName>LifeStages_Womb</defName>
         <label>Womb and Ovaries</label>
+        <stages>
+            <li>
+                <statOffsets>
+                    <PainShockThreshold>.0133</PainShockThreshold>
+                    <MentalBreakThreshold>.0133</MentalBreakThreshold>
+                </statOffsets>
+            </li>
+        </stages>
     </HediffDef>
 
     <HediffDef ParentName="NaturalLifeStagePartBase">
         <defName>LifeStages_Testes</defName>
         <label>Testes</label>
+        <stages>
+            <li>
+                <statOffsets>
+                    <UnskilledLaborSpeed>.0133</UnskilledLaborSpeed>
+                    <MeatAmount>.02</MeatAmount>
+                    <CarryingCapacity>.02</CarryingCapacity>
+                </statOffsets>
+            </li>
+        </stages>
     </HediffDef>
 
+    <HediffDef Name="NaturalLifeStagePartBaseHair" Abstract="True">
+        <defaultLabelColor>(0.7, 0.8, 0.7)</defaultLabelColor>
+        <isBad>false</isBad>
+        <scenarioCanAdd>true</scenarioCanAdd>
+        <stages>
+            <li>
+                <statOffsets>
+                    <ComfyTemperatureMin>-.3</ComfyTemperatureMin>
+                    <ComfyTemperatureMax>.1</ComfyTemperatureMax>
+                    <SocialImpact>.001</SocialImpact>
+                </statOffsets>
+            </li>
+        </stages>
+    </HediffDef>
+
+
+    <HediffDef ParentName="NaturalLifeStagePartBaseHair">
+        <defName>LifeStages_PubicHair</defName>
+        <label>Pubic Hair</label>
+    </HediffDef>
+
+    <HediffDef ParentName="NaturalLifeStagePartBaseHair">
+        <defName>LifeStages_BodyHair</defName>
+        <label>Body hair</label>
+    </HediffDef>
 
     <HediffDef ParentName="NaturalLifeStagePartBase">
         <defName>LifeStages_Transgendered</defName>
         <label>Transgendered</label>
-        <!--<stages>
-            <li>
-                <label>Hidden</label>
-                <becomeVisible>false</becomeVisible>
-            </li>
-        </stages>-->
+        <defaultLabelColor>(0.8, 0.498039, 0.196078)</defaultLabelColor>
     </HediffDef>
-
-
 </Defs>

@@ -18,8 +18,6 @@ namespace HumanlikeLifeStages
                 }
             } else if (Rand.Value < chanceForHair(pawn)) 
             {
-                Log.Message("Add Hair!");
-                
                 AddHair(pawn, whatPart(pawn));
             }
         }
@@ -31,8 +29,6 @@ namespace HumanlikeLifeStages
 
             //always get public hair first
             pawn.health.AddHediff(HediffDefOf.LifeStages_PubicHair, groin);
-
-            Log.Message("Adding pubic hair");
         }
 
 
