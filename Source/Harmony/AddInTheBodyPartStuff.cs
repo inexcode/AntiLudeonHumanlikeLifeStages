@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Reflection.Emit;
 using Harmony;
 using RimWorld;
@@ -61,14 +62,9 @@ namespace HumanlikeLifeStages
             __instance.nakedGraphic = GraphicDatabase.Get<Graphic_Multi>(
                 __instance.pawn.story.bodyType.bodyNakedGraphicPath, ShaderDatabase.CutoutSkin, vector2,
                 __instance.pawn.story.SkinColor);
-            __instance.nakedGraphic.drawSize = vector2;
             __instance.rottingGraphic = GraphicDatabase.Get<Graphic_Multi>(
                 __instance.pawn.story.bodyType.bodyNakedGraphicPath, ShaderDatabase.CutoutSkin, vector2,
                 PawnGraphicSet.RottingColor);
-            __instance.nakedGraphic.drawSize = vector2;
-
-            __instance.skullGraphic.drawSize = vector2;
-            __instance.headGraphic.drawSize = vector2;
             
             __instance.ClearCache();
 
@@ -97,6 +93,8 @@ namespace HumanlikeLifeStages
     {
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
+            FieldInfo  humanlikeBodyInfo = AccessTools.Field(type: typeof(MeshPool), name: nameof(MeshPool.humanlikeBodySet));
+            
             int startIndex = -1, endIndex = -1;
 
             var codes = new List<CodeInstruction>(instructions);
@@ -120,7 +118,7 @@ namespace HumanlikeLifeStages
                 else if (codeInstruction.opcode == OpCodes.Ldsfld)
                 {
                     var value = codeInstruction.operand?.ToString();
-                    if ("Verse.GraphicMeshSet humanlikeBodySet".Equals(value))
+                    if (codeInstruction.operand == humanlikeBodyInfo)
                     {
                         Log.Message("OpCode TO PATCH: " + value);
                         startIndex = i; //get that br
@@ -134,12 +132,10 @@ namespace HumanlikeLifeStages
 
             if (startIndex > 0 && endIndex > 0)
             {
-                for (int i = startIndex; i <= endIndex; i++)
-                {
-                    codes[i].opcode = OpCodes.Nop;
-                    codes[i].operand = null;
-                    codes[i].labels = new List<Label>();
-                }
+                    codes[endIndex].opcode = OpCodes.Nop;
+                    codes[endIndex].operand = null;
+                    codes[endIndex].labels = new List<Label>();
+                
                 Log.Message("Age Matters2 : Op Codes Altered for Child Size");
             }
             else
