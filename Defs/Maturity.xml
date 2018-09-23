@@ -78,6 +78,7 @@
 
     <HediffDef ParentName="DiseaseBase">
         <defName>LifeStages_Youth</defName>
+        <hediffClass>HumanlikeLifeStages.HediffYouth</hediffClass>
         <label>youth</label>
         <initialSeverity>1</initialSeverity>
         <labelNoun>child</labelNoun>

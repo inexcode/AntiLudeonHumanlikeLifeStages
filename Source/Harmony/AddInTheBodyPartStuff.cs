@@ -103,12 +103,10 @@ namespace HumanlikeLifeStages
                 var codeInstruction = codes[i];
                 if (endIndex > 0)
                 {
-                    Log.Message("OpCode After Done: " + codeInstruction);
                     break;
                 }
                 else if (startIndex > 0)
                 {
-                    Log.Message("OpCode TO rem: " + codeInstruction);
                     if (codeInstruction.opcode == OpCodes.Br)
                     {
                         endIndex = i;
@@ -120,12 +118,7 @@ namespace HumanlikeLifeStages
                     var value = codeInstruction.operand?.ToString();
                     if (codeInstruction.operand == humanlikeBodyInfo)
                     {
-                        Log.Message("OpCode TO PATCH: " + value);
                         startIndex = i; //get that br
-                    }
-                    else
-                    {
-                        Log.Message("OpCode to ignore: [" + value + "]");
                     }
                 }
             }
