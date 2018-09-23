@@ -10,7 +10,6 @@
         <defName>ReproductiveOrgans</defName>
         <label>reproductive organs</label>
         <skinCovered>false</skinCovered>
-        <conceptual>true</conceptual>
         <canSuggestAmputation>false</canSuggestAmputation>
         <tags>
             <li>FertilitySource</li>
