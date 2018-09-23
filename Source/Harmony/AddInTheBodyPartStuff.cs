@@ -29,7 +29,7 @@ namespace HumanlikeLifeStages
                     
                     // insert body part
                     body.corePart.parts.Add(bodyPartRecord); 
-                    Log.Message("Added body part ["+bodyPartRecord+"] to ["+body+"]");
+                    Log.Message("Added body part ["+bodyPartRecord.def.defName+"] to ["+body.defName+"]");
                 }
 
                 //clear cache
