@@ -69,7 +69,7 @@ namespace HumanlikeLifeStages
             __instance.ClearCache();
 
 
-            Log.Message("Scaling Size of [" + __instance.pawn + "] by [" + scale + "] Updated.");
+            //Log.Message("Scaling Size of [" + __instance.pawn + "] by [" + scale + "] Updated.");
         }
     }
 
