@@ -49,8 +49,11 @@ namespace HumanlikeLifeStages
         public static void Postfix(PawnGraphicSet __instance)
         {
             if (__instance?.pawn?.RaceProps == null
-                || !__instance.pawn.RaceProps.Humanlike ||
-                __instance.nakedGraphic == null) return;
+                || !__instance.pawn.RaceProps.Humanlike
+                || !__instance.pawn.RaceProps.hasGenders
+                || __instance.nakedGraphic == null
+                || __instance.pawn.BodySize > 1f
+                ) return;
 
             float scale = __instance?.pawn?.ageTracker?.CurLifeStage?.bodySizeFactor ?? 1f;
             scale *= __instance.pawn.RaceProps.baseBodySize * 1.5f;
