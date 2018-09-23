@@ -5,7 +5,7 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 
-namespace HumanlikeLifeStages.Harmony
+namespace HumanlikeLifeStages
 {
     [HarmonyPatch(typeof(JobDriver_Lovin), "MakeNewToils")]
     public static class JobDriver_Lovin_Patch

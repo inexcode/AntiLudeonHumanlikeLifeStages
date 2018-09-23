@@ -48,6 +48,7 @@
     <Compile Include="mod\Recipe_Neuter.cs" />
     <Compile Include="mod\Recipe_SRS.cs" />
     <Compile Include="mod\ThoughtWorker_Puberty_Hediff.cs" />
+    <Compile Include="mod\ThoughtWorker_Youth_Apply.cs" />
     <Compile Include="Pawns\BodyCache.cs" />
     <Compile Include="Pawns\BodyHairHelper.cs" />
     <Compile Include="Pawns\ChestManager.cs" />

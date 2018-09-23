@@ -8,6 +8,7 @@ namespace HumanlikeLifeStages
     [HarmonyPatch( typeof( DefGenerator ), "GenerateImpliedDefs_PreResolve" )]
     public static class DefGenerator_GenerateImpliedDefs_PreResolve
     {
+        [HarmonyPostfix]
         public static void Postfix()
         {
             var fleshRaces = DefDatabase<ThingDef>
@@ -25,6 +26,7 @@ namespace HumanlikeLifeStages
             {
                 foreach (var bodyPartRecord in BodyPartDefOf.NewOrgans)
                 {
+                    
                     // insert body part
                     body.corePart.parts.Add(bodyPartRecord); 
                     Log.Message("Added body part ["+bodyPartRecord+"] to ["+body+"]");

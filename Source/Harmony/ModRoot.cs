@@ -2,7 +2,7 @@
 using Harmony;
 using Verse;
 
-namespace HumanlikeLifeStages.Harmony
+namespace HumanlikeLifeStages
 {
 
     [StaticConstructorOnStartup]

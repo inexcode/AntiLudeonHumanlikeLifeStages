@@ -3,7 +3,6 @@
         <defName>Maturity</defName>
         <label>Maturity</label>
         <skinCovered>false</skinCovered>
-        <conceptual>true</conceptual>
         <destroyableByDamage>false</destroyableByDamage>
         <canSuggestAmputation>false</canSuggestAmputation>
     </BodyPartDef>
@@ -57,6 +56,19 @@
                 <label>hormonally miserable</label>
                 <description>My body is changing!!!</description>
                 <baseMoodEffect>-10</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+
+    <ThoughtDef>
+        <defName>LifeStages_Thoughts_Age_Worker</defName>
+        <workerClass>HumanlikeLifeStages.ThoughtWorker_Youth_Apply</workerClass>
+        <validWhileDespawned>true</validWhileDespawned>
+        <stages>
+            <li>
+                <label>hormonal change</label>
+                <description>Growing up</description>
             </li>
         </stages>
     </ThoughtDef>
