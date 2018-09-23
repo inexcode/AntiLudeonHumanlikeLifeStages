@@ -23,15 +23,17 @@ namespace HumanlikeLifeStages
                 return;
 
             ChestManager.intialChest(pawn);
-
+            
+            SettingHelper.latest.update();
+            
             var yearsOld = pawn.ageTracker.AgeBiologicalYears;
 
-            if (yearsOld < 3)
+            if (yearsOld < SettingHelper.latest.PubertyOnset)
             {
                 var dif = pawn.health.AddHediff(HediffDefOf.LifeStages_Youth, maturityPart, null);
                 dif.Severity = 1f/(1+yearsOld);
             }
-            else if (yearsOld < 5)
+            else if (yearsOld < SettingHelper.latest.PubertyOnset+1)
             {
                 pawn.health.AddHediff(HediffDefOf.LifeStages_Puberty, maturityPart, null);
             }

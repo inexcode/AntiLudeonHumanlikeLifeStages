@@ -12,7 +12,7 @@ namespace HumanlikeLifeStages
             
             if (p == null) return false;
 
-            if (p.ageTracker.AgeBiologicalYears > 5) return false;
+            if (p.ageTracker.AgeBiologicalYears > SettingHelper.latest.PubertyOnset+1) return false;
             
             if (PawnHelper.isHaveHediff(p, HediffDefOf.LifeStages_Puberty))
                 return false;
