@@ -29,7 +29,7 @@ namespace HumanlikeLifeStages
             if (yearsOld < 3)
             {
                 var dif = pawn.health.AddHediff(HediffDefOf.LifeStages_Youth, maturityPart, null);
-                dif.Severity = 1f;
+                dif.Severity = 1f/(1+yearsOld);
             }
             else if (yearsOld < 5)
             {
