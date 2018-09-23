@@ -50,12 +50,13 @@ namespace HumanlikeLifeStages
         {
             if (__instance?.pawn?.RaceProps == null
                 || !__instance.pawn.RaceProps.Humanlike
-                || !__instance.pawn.RaceProps.hasGenders
                 || __instance.nakedGraphic == null
-                || __instance.pawn.BodySize > 1f
                 ) return;
 
             float scale = __instance?.pawn?.ageTracker?.CurLifeStage?.bodySizeFactor ?? 1f;
+
+            if (Math.Abs(scale - 1f) < 1E-6) return;
+            
             scale *= __instance.pawn.RaceProps.baseBodySize * 1.5f;
             
             var vector2 = new Vector2(scale, scale);
