@@ -61,7 +61,7 @@ namespace HumanlikeLifeStages
 
         static BodyPartRecord New_ReproductiveOrgans => new BodyPartRecord
         {
-            coverage = 0f,
+            coverage = 0.0001f,
             def = ReproductiveOrgans,
             depth = BodyPartDepth.Undefined,
             groups = new List<BodyPartGroupDef>(new[] {BodyPartGroupDefOf.Torso}),

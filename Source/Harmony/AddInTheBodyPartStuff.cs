@@ -42,7 +42,7 @@ namespace HumanlikeLifeStages
         }
     }
 
-    [HarmonyPatch(typeof(PawnGraphicSet), "ResolveAllGraphics")]
+    /*[HarmonyPatch(typeof(PawnGraphicSet), "ResolveAllGraphics")]
     public static class PawnGraphicSet_ResolveAllGraphics
     {
         [HarmonyPrefix]
@@ -142,5 +142,5 @@ namespace HumanlikeLifeStages
 
             return codes.AsEnumerable();
         }
-    }
+    }*/
 }
