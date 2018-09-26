@@ -1,4 +1,5 @@
 using System.Linq;
+using Fluffy_BirdsAndBees;
 using RimWorld;
 using Verse;
 
@@ -28,14 +29,13 @@ namespace HumanlikeLifeStages
         
         private bool pubertyFeels(Pawn pawn)
         {
-            if (pawn.IsHashIntervalTick(20000))
-            {
-                lastStatus = Rand.Bool;
+            if (!pawn.IsHashIntervalTick(20000)) return lastStatus;
                 
-                //puberty tick time
-                PubertyHelper.applyPubertyDay(pawn,
-                    pawn.health.hediffSet.hediffs.First(x => x.def == HediffDefOf.LifeStages_Puberty).Severity);
-            }
+            lastStatus = Rand.Bool;
+                
+            //puberty tick time
+            PubertyHelper.applyPubertyDay(pawn,
+                pawn.health.hediffSet.hediffs.First(x => x.def == HediffDefOf.LifeStages_Puberty).Severity);
 
             return lastStatus;
         }

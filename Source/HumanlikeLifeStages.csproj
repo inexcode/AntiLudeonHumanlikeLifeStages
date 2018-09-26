@@ -72,6 +72,10 @@
       <HintPath>..\..\..\..\..\workshop\content\294100\1225716710\Assemblies\ChildrenHelperClasses.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Fluffy_BirdsAndBees, Version=1.1.18.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\BirdsAndBees-master\Assemblies\Fluffy_BirdsAndBees.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.dll</HintPath>
       <Private>False</Private>
