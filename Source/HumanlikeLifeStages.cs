@@ -8,14 +8,14 @@ namespace HumanlikeLifeStages
 {
     public static class Resources
     {
-        public static IEnumerable<BodyPartRecord> ReproductiveOrgans(this Pawn pawn)
+        public static IEnumerable<BodyPartRecord> LifeStages_ReproductiveOrgans(this Pawn pawn)
         {
-            return pawn.RaceProps.body.ReproductiveOrgans();
+            return pawn.RaceProps.body.LifeStages_ReproductiveOrgans();
         }
 
-        public static IEnumerable<BodyPartRecord> ReproductiveOrgans(this BodyDef body)
+        public static IEnumerable<BodyPartRecord> LifeStages_ReproductiveOrgans(this BodyDef body)
         {
-            return body.AllParts.Where(part => part.def == BodyPartDefOf.ReproductiveOrgans);
+            return body.AllParts.Where(part => part.def == BodyPartDefOf.LifeStages_ReproductiveOrgans);
         }
     }
 
@@ -50,19 +50,19 @@ namespace HumanlikeLifeStages
     {
         public static BodyPartDef Groin;
         public static BodyPartDef Chest;
-        public static BodyPartDef ReproductiveOrgans;
+        public static BodyPartDef LifeStages_ReproductiveOrgans;
         public static BodyPartDef Maturity;
 
 
         public static IEnumerable<BodyPartRecord> NewOrgans => new List<BodyPartRecord>
         {
-            New_ReproductiveOrgans, New_Chest, New_Groin, New_Maturity
+            New_LifeStages_ReproductiveOrgans, New_Chest, New_Groin, New_Maturity
         };
 
-        static BodyPartRecord New_ReproductiveOrgans => new BodyPartRecord
+        static BodyPartRecord New_LifeStages_ReproductiveOrgans => new BodyPartRecord
         {
             coverage = 0.0001f,
-            def = ReproductiveOrgans,
+            def = LifeStages_ReproductiveOrgans,
             depth = BodyPartDepth.Undefined,
             groups = new List<BodyPartGroupDef>(new[] {BodyPartGroupDefOf.Torso}),
             height = BodyPartHeight.Middle

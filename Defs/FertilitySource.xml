@@ -64,7 +64,7 @@
     <hideBodyPartNames>true</hideBodyPartNames>
     <targetsBodyPart>true</targetsBodyPart>
     <appliedOnFixedBodyParts>
-      <li>ReproductiveOrgans</li>
+      <li>LifeStages_ReproductiveOrgans</li>
     </appliedOnFixedBodyParts>
     <addsHediff>LifeStages_Neutered</addsHediff>
     <isViolation>true</isViolation>
@@ -95,7 +95,7 @@
     <hideBodyPartNames>true</hideBodyPartNames>
     <targetsBodyPart>true</targetsBodyPart>
     <appliedOnFixedBodyParts>
-      <li>ReproductiveOrgans</li>
+      <li>LifeStages_ReproductiveOrgans</li>
     </appliedOnFixedBodyParts>
     <addsHediff>LifeStages_Puberty</addsHediff>
     <isViolation>false</isViolation>

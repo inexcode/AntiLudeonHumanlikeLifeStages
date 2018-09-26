@@ -16,7 +16,7 @@ namespace HumanlikeLifeStages
         public static IEnumerable<BodyPartRecord> PartsToApplyOn(Pawn pawn)
         {
             if (!pawn.health.hediffSet.HasHediff(HediffDefOf.LifeStages_Neutered))
-                return pawn.ReproductiveOrgans().Where(x => !pawn.health.hediffSet.PartIsMissing(x));
+                return pawn.LifeStages_ReproductiveOrgans().Where(x => !pawn.health.hediffSet.PartIsMissing(x));
 
             return new List<BodyPartRecord>();
         }

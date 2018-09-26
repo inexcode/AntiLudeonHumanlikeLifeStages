@@ -46,7 +46,7 @@ namespace HumanlikeLifeStages
                 if (intersex)
                 {
                     pawn.health.AddHediff(HediffDefOf.LifeStages_Testes, BodyCache.Groin(pawn));
-                    pawn.health.AddHediff(HediffDefOf.LifeStages_Womb, BodyCache.ReproductiveOrgans(pawn));
+                    pawn.health.AddHediff(HediffDefOf.LifeStages_Womb, BodyCache.LifeStages_ReproductiveOrgans(pawn));
                 }
                 else
                 {
@@ -56,7 +56,7 @@ namespace HumanlikeLifeStages
                             pawn.health.AddHediff(HediffDefOf.LifeStages_Testes, BodyCache.Groin(pawn));
                             break;
                         case Gender.Female:
-                            pawn.health.AddHediff(HediffDefOf.LifeStages_Womb, BodyCache.ReproductiveOrgans(pawn));
+                            pawn.health.AddHediff(HediffDefOf.LifeStages_Womb, BodyCache.LifeStages_ReproductiveOrgans(pawn));
                             break;
                     }
                 }

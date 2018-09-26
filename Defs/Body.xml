@@ -7,8 +7,8 @@
     </BodyPartDef>
 
     <BodyPartDef>
-        <defName>ReproductiveOrgans</defName>
-        <label>reproductive organs</label>
+        <defName>LifeStages_ReproductiveOrgans</defName>
+        <label>Internal organs</label>
         <skinCovered>false</skinCovered>
         <canSuggestAmputation>false</canSuggestAmputation>
         <tags>

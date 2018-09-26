@@ -27,11 +27,11 @@ namespace HumanlikeLifeStages
             return validParts;
         }
 
-        private static readonly Dictionary<RaceProperties, BodyPartRecord> ReproductiveOrgansCache = new Dictionary<RaceProperties, BodyPartRecord>();
+        private static readonly Dictionary<RaceProperties, BodyPartRecord> LifeStages_ReproductiveOrgansCache = new Dictionary<RaceProperties, BodyPartRecord>();
 
-        public static BodyPartRecord ReproductiveOrgans(Pawn pawn)
+        public static BodyPartRecord LifeStages_ReproductiveOrgans(Pawn pawn)
         {
-            return ReproductiveOrgansCache.TryGetValue(pawn.RaceProps) ?? (ReproductiveOrgansCache[pawn.RaceProps] = pawn.RaceProps.body.AllParts.First(x => x.def == BodyPartDefOf.ReproductiveOrgans));
+            return LifeStages_ReproductiveOrgansCache.TryGetValue(pawn.RaceProps) ?? (LifeStages_ReproductiveOrgansCache[pawn.RaceProps] = pawn.RaceProps.body.AllParts.First(x => x.def == BodyPartDefOf.LifeStages_ReproductiveOrgans));
         }
 
         private static readonly Dictionary<RaceProperties, BodyPartRecord> ChestBodyPartRecordsCache = new Dictionary<RaceProperties, BodyPartRecord>();

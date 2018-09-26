@@ -11,7 +11,7 @@ namespace HumanlikeLifeStages
         {
             if (PawnHelper.isHaveHediff(pawn, HediffDefOf.LifeStages_Transgendered) || pawn.gender == Gender.None)
             {
-                return pawn.ReproductiveOrgans();
+                return pawn.LifeStages_ReproductiveOrgans();
             }
 
             return new List<BodyPartRecord>();
