@@ -39,6 +39,9 @@ namespace HumanlikeLifeStages
                 //clear cache
                 body.ResolveReferences();
             }
+            
+            
+            SettingHelper.latest.update();
         }
     }
 

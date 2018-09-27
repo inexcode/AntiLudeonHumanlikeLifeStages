@@ -128,7 +128,7 @@ namespace HumanlikeLifeStages
                     .Where(x => x != null)
                 )
                 {
-                    comp.severityPerDay = 1f / (60f * PubertyOnset);
+                    comp.severityPerDay = - 1f / (60f * PubertyOnset);
                 }
 
 
@@ -143,7 +143,11 @@ namespace HumanlikeLifeStages
                 {
                     var raceLifeStageAge = humanoidRace.race.lifeStageAges[index];
 
+                    var age = raceLifeStageAge.minAge;
                     raceLifeStageAge.minAge = fs[index] / 13f * PubertyOnset;
+
+                    Log.Message(
+                        "Setting [" + raceLifeStageAge + "] to have min age of " + raceLifeStageAge.minAge + " from "+age);
                 }
             }
         }
