@@ -39,6 +39,8 @@ namespace HumanlikeLifeStages
 
         public static HediffDef LifeStages_Puberty;
         public static HediffDef LifeStages_Youth;
+        public static HediffDef LifeStages_Adult;
+        
         public static HediffDef LifeStages_Transgendered;
         public static HediffDef LifeStages_Infertile_BirthDefect;
         public static HediffDef LifeStages_Neutered;

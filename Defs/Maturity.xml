@@ -9,6 +9,13 @@
 
     <!-- TA DA, Puberty -->
 
+    <HediffDef ParentName="NaturalLifeStagePartBase">
+        <defaultLabelColor>(0.8, 0.8, 0.9)</defaultLabelColor>
+        <defName>LifeStages_Adult</defName>
+        <label>postpubescent</label>
+        <labelNoun>adulthood</labelNoun>
+    </HediffDef>
+
     <HediffDef ParentName="DiseaseBase">
         <defName>LifeStages_Puberty</defName>
         <label>puberty</label>

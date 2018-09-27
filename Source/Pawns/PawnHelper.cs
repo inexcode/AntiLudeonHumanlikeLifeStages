@@ -26,5 +26,11 @@ namespace HumanlikeLifeStages
         {
             return (pawn?.health?.hediffSet != null && pawn.health.hediffSet.HasHediff(what));
         }
+
+        public static BodyPartRecord MaturityPart(Pawn pawn)
+        {
+            BodyPartRecord maturityPart = pawn.RaceProps.body.AllParts.Find(b => (b.def == BodyPartDefOf.Maturity));
+            return maturityPart;
+        }
     }
 }

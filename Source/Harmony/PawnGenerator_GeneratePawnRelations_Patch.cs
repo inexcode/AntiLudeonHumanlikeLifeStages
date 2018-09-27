@@ -18,7 +18,7 @@ namespace HumanlikeLifeStages
             if (BodyPartDefOf.Maturity == null)
                 throw new Exception("BodyPartDefOf.Maturity missing!");
 
-            BodyPartRecord maturityPart = pawn.RaceProps.body.AllParts.Find(b => (b.def == BodyPartDefOf.Maturity));
+            var maturityPart = PawnHelper.MaturityPart(pawn);
             if (maturityPart == null)
                 return;
 
@@ -43,6 +43,8 @@ namespace HumanlikeLifeStages
                 {
                     PubertyHelper.applyPubertyDay(pawn, 1f * i / SplitsForPuberty);
                 }
+                
+                pawn.health.AddHediff(HediffDefOf.LifeStages_Adult, maturityPart);
             }
         }
     }

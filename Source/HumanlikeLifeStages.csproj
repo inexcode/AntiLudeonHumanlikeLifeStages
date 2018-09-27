@@ -45,6 +45,7 @@
     <Compile Include="Harmony\PawnGenerator_GeneratePawnRelations_Patch.cs" />
     <Compile Include="HumanlikeLifeStages.cs" />
     <Compile Include="integration\ChildrenCrossMod.cs" />
+    <Compile Include="mod\HediffPuberty.cs" />
     <Compile Include="mod\HediffYouth.cs" />
     <Compile Include="mod\PawnCapacityWorker_Fertility.cs" />
     <Compile Include="mod\Recipe_Neuter.cs" />
