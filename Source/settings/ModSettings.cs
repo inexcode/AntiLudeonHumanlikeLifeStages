@@ -60,7 +60,7 @@ namespace HumanlikeLifeStages
             this.settings.otherHairGrowthRate = Widgets.HorizontalSlider(
                 inRect.TopHalf().BottomHalf().BottomHalf().RightHalf().ContractedBy(4f),
                 this.settings.otherHairGrowthRate, 0f, 1f, true,
-                "Hair growth rte for the rest : " +
+                "Hair growth rate for the rest : " +
                 this.settings.otherHairGrowthRate * 100f,
                 "0%", "100%");
 
@@ -95,14 +95,14 @@ namespace HumanlikeLifeStages
 
     public class ModSettings : Verse.ModSettings
     {
-        public float woohooChildChance,
-            IntersexChance,
-            IntersexInfertileChance,
-            TransgenderChance,
-            maleHairGrowthRate,
-            otherHairGrowthRate,
-            EarlyPubertyChance,
-            PubertyDelay,
+        public float woohooChildChance = 1f,
+            IntersexChance = 0.05f,
+            IntersexInfertileChance = 0.05f,
+            TransgenderChance = 0.05f,
+            maleHairGrowthRate = 0.2f,
+            otherHairGrowthRate = 0.02f,
+            EarlyPubertyChance = 0.02f,
+            PubertyDelay = 0.75f,
             PubertyOnset = 3f;
 
 
