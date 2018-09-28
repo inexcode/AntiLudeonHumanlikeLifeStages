@@ -95,9 +95,37 @@
         <stages>
             <li>
                 <statOffsets>
-                    <ComfyTemperatureMin>-.3</ComfyTemperatureMin>
-                    <ComfyTemperatureMax>.1</ComfyTemperatureMax>
+                    <ComfyTemperatureMin>-.01</ComfyTemperatureMin>
+                    <ComfyTemperatureMax>.01</ComfyTemperatureMax>
                     <SocialImpact>.001</SocialImpact>
+                </statOffsets>
+            </li>
+            <li>
+
+                <label>Prevalent</label>
+                <minSeverity>0.3</minSeverity>
+                <statOffsets>
+                    <ComfyTemperatureMin>-.015</ComfyTemperatureMin>
+                    <ComfyTemperatureMax>.015</ComfyTemperatureMax>
+                    <SocialImpact>.005</SocialImpact>
+                </statOffsets>
+            </li>
+            <li>
+                <label>Thick</label>
+                <minSeverity>0.7</minSeverity>
+                <statOffsets>
+                    <ComfyTemperatureMin>-.02</ComfyTemperatureMin>
+                    <ComfyTemperatureMax>.02</ComfyTemperatureMax>
+                    <SocialImpact>.01</SocialImpact>
+                </statOffsets>
+            </li>
+            <li>
+                <label>Bearlike</label>
+                <minSeverity>0.9</minSeverity>
+                <statOffsets>
+                    <ComfyTemperatureMin>-.025</ComfyTemperatureMin>
+                    <ComfyTemperatureMax>.025</ComfyTemperatureMax>
+                    <SocialImpact>.01</SocialImpact>
                 </statOffsets>
             </li>
         </stages>

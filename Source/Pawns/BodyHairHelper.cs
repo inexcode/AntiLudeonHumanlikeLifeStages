@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,8 @@ namespace HumanlikeLifeStages
             BodyPartRecord groin = BodyCache.Groin(pawn);
 
             //always get public hair first
-            pawn.health.AddHediff(HediffDefOf.LifeStages_PubicHair, groin);
+            var diff = pawn.health.AddHediff(HediffDefOf.LifeStages_PubicHair, groin);
+            diff.Severity = .1f;
         }
 
 
@@ -39,11 +41,35 @@ namespace HumanlikeLifeStages
 
         public static void AddHair(Pawn pawn, BodyPartRecord whereHair)
         {
-           
-            if (whereHair != null)
+            if (whereHair == null) return;
+
+
+            var hediff = GetHediff(pawn, HediffDefOf.LifeStages_BodyHair, whereHair, false);
+            if (hediff == null)
             {
-                pawn.health.AddHediff(HediffDefOf.LifeStages_BodyHair, whereHair);
+                hediff = pawn.health.AddHediff(HediffDefOf.LifeStages_BodyHair, whereHair);
+                hediff.Severity = 0.05f;
             }
+            else
+            {
+                hediff.Severity = Math.Min(hediff.Severity + 0.1f, 1f);
+            }
+        }
+        
+        
+
+
+        public static Hediff GetHediff(Pawn pawn, HediffDef def, BodyPartRecord bodyPart, bool mustBeVisible = false)
+        {
+            var hediffs = pawn.health.hediffSet.hediffs;
+            for (int index = 0; index < hediffs.Count; ++index)
+            {
+                if (hediffs[index].def == def && hediffs[index].Part == bodyPart &&
+                    (!mustBeVisible || hediffs[index].Visible))
+                    return hediffs[index];
+            }
+
+            return null;
         }
 
 
