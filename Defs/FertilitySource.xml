@@ -90,7 +90,7 @@
     <defName>HumanlikeLifeStages_SRS</defName>
     <label>Sex reassignment surgery</label>
     <description>Resolves a pawns issues with their bodies.</description>
-    <jobString>Neutering.</jobString>
+    <jobString>performing sex reassignment surgery.</jobString>
     <workAmount>500</workAmount>
     <hideBodyPartNames>true</hideBodyPartNames>
     <targetsBodyPart>true</targetsBodyPart>
