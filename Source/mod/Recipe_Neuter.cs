@@ -32,6 +32,7 @@ namespace HumanlikeLifeStages
             pawn.health.AddHediff( recipe.addsHediff, part, null );
 
             pawn.gender = Gender.None;
+            ResolvePuberty(pawn);
         }
         
         private void ResolvePuberty(Pawn pawn)

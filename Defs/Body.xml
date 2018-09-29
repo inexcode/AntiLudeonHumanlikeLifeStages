@@ -44,7 +44,35 @@
         <stages>
             <li>
                 <statOffsets>
+                    <SocialImpact>.001</SocialImpact>
+                </statOffsets>
+            </li>
+            <li>
+                <label>Noticeable</label>
+                <minSeverity>0.2</minSeverity>
+                <statOffsets>
+                    <SocialImpact>.005</SocialImpact>
+                </statOffsets>
+            </li>
+            <li>
+                <label>Prevalent</label>
+                <minSeverity>0.5</minSeverity>
+                <statOffsets>
                     <SocialImpact>.01</SocialImpact>
+                </statOffsets>
+            </li>
+            <li>
+                <label>Thick</label>
+                <minSeverity>0.7</minSeverity>
+                <statOffsets>
+                    <SocialImpact>.02</SocialImpact>
+                </statOffsets>
+            </li>
+            <li>
+                <label>Terry Crews</label>
+                <minSeverity>0.9</minSeverity>
+                <statOffsets>
+                    <SocialImpact>.1</SocialImpact>
                 </statOffsets>
             </li>
         </stages>
@@ -56,7 +84,42 @@
         <stages>
             <li>
                 <statOffsets>
+                    <SocialImpact>.001</SocialImpact>
+                </statOffsets>
+            </li>
+            <li>
+                <label>Noticeable</label>
+                <minSeverity>0.2</minSeverity>
+                <statOffsets>
+                    <SocialImpact>.005</SocialImpact>
+                </statOffsets>
+            </li>
+            <li>
+                <label>Prevalent</label>
+                <minSeverity>0.4</minSeverity>
+                <statOffsets>
                     <SocialImpact>.01</SocialImpact>
+                </statOffsets>
+            </li>
+            <li>
+                <label>Uncomfortable</label>
+                <minSeverity>0.6</minSeverity>
+                <statOffsets>
+                    <SocialImpact>.02</SocialImpact>
+                </statOffsets>
+            </li>
+            <li>
+                <label>Crippling</label>
+                <minSeverity>0.8</minSeverity>
+                <statOffsets>
+                    <SocialImpact>.02</SocialImpact>
+                </statOffsets>
+            </li>
+            <li>
+                <label>Comically Exaggerated</label>
+                <minSeverity>0.9</minSeverity>
+                <statOffsets>
+                    <SocialImpact>.1</SocialImpact>
                 </statOffsets>
             </li>
         </stages>
@@ -95,24 +158,21 @@
         <stages>
             <li>
                 <statOffsets>
-                    <ComfyTemperatureMin>-.01</ComfyTemperatureMin>
-                    <ComfyTemperatureMax>.01</ComfyTemperatureMax>
                     <SocialImpact>.001</SocialImpact>
                 </statOffsets>
             </li>
             <li>
-
                 <label>Prevalent</label>
                 <minSeverity>0.3</minSeverity>
                 <statOffsets>
-                    <ComfyTemperatureMin>-.015</ComfyTemperatureMin>
-                    <ComfyTemperatureMax>.015</ComfyTemperatureMax>
+                    <ComfyTemperatureMin>-.01</ComfyTemperatureMin>
+                    <ComfyTemperatureMax>.01</ComfyTemperatureMax>
                     <SocialImpact>.005</SocialImpact>
                 </statOffsets>
             </li>
             <li>
                 <label>Thick</label>
-                <minSeverity>0.7</minSeverity>
+                <minSeverity>0.6</minSeverity>
                 <statOffsets>
                     <ComfyTemperatureMin>-.02</ComfyTemperatureMin>
                     <ComfyTemperatureMax>.02</ComfyTemperatureMax>
@@ -123,9 +183,9 @@
                 <label>Bearlike</label>
                 <minSeverity>0.9</minSeverity>
                 <statOffsets>
-                    <ComfyTemperatureMin>-.025</ComfyTemperatureMin>
-                    <ComfyTemperatureMax>.025</ComfyTemperatureMax>
-                    <SocialImpact>.01</SocialImpact>
+                    <ComfyTemperatureMin>-.1</ComfyTemperatureMin>
+                    <ComfyTemperatureMax>.1</ComfyTemperatureMax>
+                    <SocialImpact>.02</SocialImpact>
                 </statOffsets>
             </li>
         </stages>

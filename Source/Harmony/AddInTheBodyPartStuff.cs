@@ -16,6 +16,9 @@ namespace HumanlikeLifeStages
         [HarmonyPostfix]
         public static void Postfix()
         {
+            RecipeDef srs = DefDatabase<RecipeDef>.GetNamed("HumanlikeLifeStages_SRS");
+            RecipeDef nullo = DefDatabase<RecipeDef>.GetNamed("HumanlikeLifeStages_Neuter");
+            
             var fleshRaces = DefDatabase<ThingDef>
                 .AllDefsListForReading
                 .Where(t => t.race?.IsFlesh ?? false); // return __instance.FleshType != FleshTypeDefOf.Mechanoid;
@@ -38,6 +41,13 @@ namespace HumanlikeLifeStages
 
                 //clear cache
                 body.ResolveReferences();
+            }
+            
+            foreach (var humanoidRace in humanoidRaces)
+            {
+
+                humanoidRace.recipes.Add(srs);
+                humanoidRace.recipes.Add(nullo);
             }
             
             

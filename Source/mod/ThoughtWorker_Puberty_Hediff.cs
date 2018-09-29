@@ -7,21 +7,14 @@ namespace HumanlikeLifeStages
 {
     public class ThoughtWorker_Puberty_Hediff : ThoughtWorker
     {
-        
-        //protected override ThoughtState CurrentSocialStateInternal(Pawn pawn, Pawn other)
-        //{   return ThoughtState.ActiveAtStage(puberty(pawn, other) ? 1 : 0);  }
-
         protected override ThoughtState CurrentStateInternal(Pawn p)
         {
             if (p == null) return false;
-            
-            if (PawnHelper.isHaveHediff(p, HediffDefOf.LifeStages_Transgendered))
-                return ThoughtState.ActiveAtStage(1);
-
+          
             if (!PawnHelper.isHaveHediff(p, HediffDefOf.LifeStages_Puberty))
                 return false;
-
-            return ThoughtState.ActiveAtStage(pubertyFeels(p) ? 1 : 0);
+            
+            return PawnHelper.isHaveHediff(p, HediffDefOf.LifeStages_Transgendered) ? ThoughtState.ActiveAtStage(1) : ThoughtState.ActiveAtStage(pubertyFeels(p) ? 1 : 0);
         }
 
 
