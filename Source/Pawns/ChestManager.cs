@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Verse;
@@ -27,28 +28,26 @@ namespace HumanlikeLifeStages
         {
             intialChest(pawn);
 
-            if (Rand.Value < .1f)
+            if (Rand.Value > .1f) return;
+            if (pawn.health.hediffSet.hediffs.Any(PubertyHelper.hasTestes) )
             {
-                if (pawn.health.hediffSet.hediffs.Any(PubertyHelper.hasTestes) )
+                //more pec
+                MoreChest(pawn, HediffDefOf.LifeStages_Pecs);
+            }
+            else
+            {
+                float boobGrowthChance = 0.05f;
+                if (PubertyHelper.RelaventHeDiffs(pawn.health.hediffSet).Any())
                 {
-                    //more pec
-                    MoreChest(pawn, HediffDefOf.LifeStages_Pecs);
+                    //ovaries keep pumping
+                    boobGrowthChance = .5f;
                 }
-                else
+
+                if (Rand.Value < boobGrowthChance)
                 {
-                    float boobGrowthChance = 0.05f;
-                    if (PubertyHelper.RelaventHeDiffs(pawn.health.hediffSet).Any())
-                    {
-                        //ovaries keep pumping
-                        boobGrowthChance = 1f;
-                    }
+                    //more boob
+                    MoreChest(pawn, HediffDefOf.LifeStages_Breasts);
 
-                    if (Rand.Value < boobGrowthChance)
-                    {
-                        //more boob
-                        MoreChest(pawn, HediffDefOf.LifeStages_Breasts);
-
-                    }
                 }
             }
         }
@@ -58,12 +57,23 @@ namespace HumanlikeLifeStages
             if (pawn.health.hediffSet.HasHediff(chestThing)) return;
             
             pawn.health.AddHediff(chestThing, BodyCache.Chest(pawn));
+            
+            var hediff = PawnHelper.GetHediff(pawn, chestThing, BodyCache.Chest(pawn), false);
+            if (hediff == null)
+            {
+                hediff = pawn.health.AddHediff(chestThing, BodyCache.Chest(pawn));
+                hediff.Severity = 0.05f;
+            }
+            else
+            {
+                hediff.Severity = Math.Min(hediff.Severity + 0.2f*Rand.Value, 1f);
+            }
 
             IEnumerable<Hediff> enumerable = pawn.health.hediffSet.hediffs.Where(x =>
                 x.def == HediffDefOf.LifeStages_NormalChest).ToList();
-            foreach (var hediff in enumerable)
+            foreach (var removeMe in enumerable)
             {
-                pawn.health.RemoveHediff(hediff);
+                pawn.health.RemoveHediff(removeMe);
             }
         }
     }

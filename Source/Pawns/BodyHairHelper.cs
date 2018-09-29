@@ -44,7 +44,7 @@ namespace HumanlikeLifeStages
             if (whereHair == null) return;
 
 
-            var hediff = GetHediff(pawn, HediffDefOf.LifeStages_BodyHair, whereHair, false);
+            var hediff = PawnHelper.GetHediff(pawn, HediffDefOf.LifeStages_BodyHair, whereHair, false);
             if (hediff == null)
             {
                 hediff = pawn.health.AddHediff(HediffDefOf.LifeStages_BodyHair, whereHair);
@@ -54,22 +54,6 @@ namespace HumanlikeLifeStages
             {
                 hediff.Severity = Math.Min(hediff.Severity + 0.1f, 1f);
             }
-        }
-        
-        
-
-
-        public static Hediff GetHediff(Pawn pawn, HediffDef def, BodyPartRecord bodyPart, bool mustBeVisible = false)
-        {
-            var hediffs = pawn.health.hediffSet.hediffs;
-            for (int index = 0; index < hediffs.Count; ++index)
-            {
-                if (hediffs[index].def == def && hediffs[index].Part == bodyPart &&
-                    (!mustBeVisible || hediffs[index].Visible))
-                    return hediffs[index];
-            }
-
-            return null;
         }
 
 

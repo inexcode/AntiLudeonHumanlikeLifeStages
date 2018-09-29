@@ -32,5 +32,18 @@ namespace HumanlikeLifeStages
             BodyPartRecord maturityPart = pawn.RaceProps.body.AllParts.Find(b => (b.def == BodyPartDefOf.Maturity));
             return maturityPart;
         }
+
+        public static Hediff GetHediff(Pawn pawn, HediffDef def, BodyPartRecord bodyPart, bool mustBeVisible = false)
+        {
+            var hediffs = pawn.health.hediffSet.hediffs;
+            for (int index = 0; index < hediffs.Count; ++index)
+            {
+                if (hediffs[index].def == def && hediffs[index].Part == bodyPart &&
+                    (!mustBeVisible || hediffs[index].Visible))
+                    return hediffs[index];
+            }
+
+            return null;
+        }
     }
 }

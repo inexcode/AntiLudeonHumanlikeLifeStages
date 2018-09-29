@@ -96,28 +96,28 @@
             </li>
             <li>
                 <label>Prevalent</label>
-                <minSeverity>0.4</minSeverity>
+                <minSeverity>0.6</minSeverity>
                 <statOffsets>
                     <SocialImpact>.01</SocialImpact>
                 </statOffsets>
             </li>
             <li>
                 <label>Uncomfortable</label>
-                <minSeverity>0.6</minSeverity>
-                <statOffsets>
-                    <SocialImpact>.02</SocialImpact>
-                </statOffsets>
-            </li>
-            <li>
-                <label>Crippling</label>
                 <minSeverity>0.8</minSeverity>
                 <statOffsets>
                     <SocialImpact>.02</SocialImpact>
                 </statOffsets>
             </li>
             <li>
-                <label>Comically Exaggerated</label>
+                <label>Crippling</label>
                 <minSeverity>0.9</minSeverity>
+                <statOffsets>
+                    <SocialImpact>.025</SocialImpact>
+                </statOffsets>
+            </li>
+            <li>
+                <label>Comically Exaggerated</label>
+                <minSeverity>0.95</minSeverity>
                 <statOffsets>
                     <SocialImpact>.1</SocialImpact>
                 </statOffsets>
