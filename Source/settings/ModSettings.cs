@@ -132,7 +132,7 @@ namespace HumanlikeLifeStages
         public String thirdGenderName = "gender-queer";
         public String thirdGenderProNoun = "they";
         public String thirdGenderPossessive = "theirs";
-        public String thirdGenderObjective = "their";
+        public String thirdGenderObjective = "them";
 
 
         public override void ExposeData()
