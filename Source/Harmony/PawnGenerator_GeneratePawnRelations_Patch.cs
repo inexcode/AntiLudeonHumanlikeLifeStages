@@ -5,6 +5,8 @@ using Verse;
 namespace HumanlikeLifeStages
 {
     [HarmonyPatch(typeof(PawnGenerator), "GenerateSkills")]
+    [HarmonyPatch(typeof(PawnGenerator), "TryGenerateNewPawnInternal")]
+    [HarmonyPatch(typeof(PawnGenerator), "GenerateInitialHediffs")]
     public static class PawnGenerator_GeneratePawnRelations_Patch
     {
         private const float SplitsForPuberty = 100f;
@@ -21,6 +23,8 @@ namespace HumanlikeLifeStages
             var maturityPart = PawnHelper.MaturityPart(pawn);
             if (maturityPart == null)
                 return;
+            
+            if(pawn.health.hediffSet.HasHediff(HediffDefOf.LifeStages_Adult)) return;
 
             ChestManager.intialChest(pawn);
             
