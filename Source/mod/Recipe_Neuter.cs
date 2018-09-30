@@ -32,19 +32,7 @@ namespace HumanlikeLifeStages
             pawn.health.AddHediff( recipe.addsHediff, part, null );
 
             pawn.gender = Gender.None;
-            ResolvePuberty(pawn);
-        }
-        
-        private void ResolvePuberty(Pawn pawn)
-        {
-            if (pawn?.health?.hediffSet.hediffs == null) return;
-            foreach (var hediff in pawn?.health?.hediffSet.hediffs)
-            {
-                if (HediffDefOf.LifeStages_Transgendered == null ||
-                    hediff.def != HediffDefOf.LifeStages_Transgendered) continue;
-                
-                pawn.health.RemoveHediff(hediff);
-            }
+            PawnHelper.ResolvePuberty(pawn);
         }
     }
 }

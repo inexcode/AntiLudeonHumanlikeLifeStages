@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -84,12 +85,35 @@ namespace HumanlikeLifeStages
                 this.settings.PubertyOnset, 1, 18, true,
                 "Age of Earliest Puberty " + this.settings.PubertyOnset + " years."
                 , "1", "18");
-//            
+
+            ThirdGendered(inRect);
+
             Widgets.Label(inRect.BottomHalf().BottomHalf().BottomHalf(),
                 "That's all, thanks for playing. -Alice.\nSource Code Available at https://github.com/alycecil");
 
             this.settings.Write();
             this.settings.update();
+        }
+
+        private void ThirdGendered(Rect inRect)
+        {
+            var pronounArea = inRect.BottomHalf().BottomHalf().TopHalf();
+            var ll = pronounArea.LeftHalf().LeftHalf();
+            var lr = pronounArea.LeftHalf().RightHalf();
+            var rl = pronounArea.RightHalf().LeftHalf();
+            var rr = pronounArea.RightHalf().RightHalf();
+
+            Widgets.TextArea(ll, "Non-Binary Gender", true);
+            this.settings.thirdGenderName = Widgets.TextArea(ll.BottomHalf(), this.settings.thirdGenderName);
+            
+            Widgets.TextArea(lr.TopHalf(), "ProNoun", true);
+            this.settings.thirdGenderProNoun = Widgets.TextArea(lr.BottomHalf(), this.settings.thirdGenderProNoun);
+
+            Widgets.TextArea(rl.TopHalf(), "Possessive", true);
+            this.settings.thirdGenderPossessive = Widgets.TextArea(rl.BottomHalf(), this.settings.thirdGenderPossessive);
+
+            Widgets.TextArea(rr.TopHalf(), "Objective", true);
+            this.settings.thirdGenderObjective = Widgets.TextArea(rr.BottomHalf(), this.settings.thirdGenderObjective);
         }
     }
 
@@ -105,6 +129,11 @@ namespace HumanlikeLifeStages
             PubertyDelay = 0.75f,
             PubertyOnset = 3f;
 
+        public String thirdGenderName = "gender-queer";
+        public String thirdGenderProNoun = "they";
+        public String thirdGenderPossessive = "theirs";
+        public String thirdGenderObjective = "their";
+
 
         public override void ExposeData()
         {
@@ -118,37 +147,52 @@ namespace HumanlikeLifeStages
             Scribe_Values.Look(ref this.EarlyPubertyChance, "EarlyPubertyChance", 0.02f);
             Scribe_Values.Look(ref this.PubertyDelay, "PubertyDelay", 0.75f);
             Scribe_Values.Look(ref this.PubertyOnset, "PubertyOnset", 3f);
+
+            Scribe_Values.Look(ref this.thirdGenderName, "thirdGenderName", "gender-queer");
+            Scribe_Values.Look(ref this.thirdGenderProNoun, "thirdGenderProNoun", "they");
+            Scribe_Values.Look(ref this.thirdGenderPossessive, "thirdGenderPossessive", "theirs");
+            Scribe_Values.Look(ref this.thirdGenderObjective, "thirdGenderObjective", "their");
         }
 
         public void update()
         {
             if (HediffDefOf.LifeStages_Youth != null)
-                foreach (HediffCompProperties_SeverityPerDay comp in HediffDefOf.LifeStages_Youth.comps
+                foreach (HediffCompProperties_SeverityPerDay comp in HediffDefOf.LifeStages_Youth?.comps
                     .Select(x => x as HediffCompProperties_SeverityPerDay)
                     .Where(x => x != null)
                 )
                 {
-                    comp.severityPerDay = - 1f / (60f * PubertyOnset);
+                    comp.severityPerDay = -1f / (60f * PubertyOnset);
                 }
 
 
             var fleshRaces = DefDatabase<ThingDef>
                 .AllDefsListForReading
-                .Where(t => t?.race?.IsFlesh ?? false); // return __instance.FleshType != FleshTypeDefOf.Mechanoid;
+                .Where(t => (t?.race?.IsFlesh ?? false)
+                            && (t?.race?.Humanlike ?? false)
+                            && (t?.race?.lifeStageAges?.Any() ??
+                                false)); // return __instance.FleshType != FleshTypeDefOf.Mechanoid;
 
-            var fs = new float[] {0, 1.2f, 4, 13, 18, 80};
-            foreach (var humanoidRace in fleshRaces.Where(td => td.race.Humanlike))
+            var fs = new float[] {0, 1.2f, 4, 13, 18, 80, 8000, 8001, 8002};
+            try
             {
-                for (var index = 0; index < humanoidRace.race.lifeStageAges.Count; index++)
+                foreach (var humanoidRace in fleshRaces)
                 {
-                    var raceLifeStageAge = humanoidRace.race.lifeStageAges[index];
+                    for (var index = 0; index < humanoidRace.race.lifeStageAges.Count; index++)
+                    {
+                        var raceLifeStageAge = humanoidRace.race.lifeStageAges[index];
 
-                    var age = raceLifeStageAge.minAge;
-                    raceLifeStageAge.minAge = fs[index] / 13f * PubertyOnset;
+                        var age = raceLifeStageAge.minAge;
+                        raceLifeStageAge.minAge = fs[index] / 13f * PubertyOnset;
 
-                    Log.Message(
-                        "Setting [" + raceLifeStageAge + "] to have min age of " + raceLifeStageAge.minAge + " from "+age);
+                        Log.Message(
+                            "Setting [" + raceLifeStageAge + "] to have min age of " + raceLifeStageAge.minAge +
+                            " from " + age);
+                    }
                 }
+            }
+            catch (Exception)
+            {
             }
         }
     }

@@ -45,5 +45,29 @@ namespace HumanlikeLifeStages
 
             return null;
         }
+
+        public static void ResolveTransgender(Pawn pawn)
+        {
+            if (pawn?.health?.hediffSet.hediffs == null) return;
+            foreach (var hediff in pawn?.health?.hediffSet.hediffs.ToArray())
+            {
+                if (HediffDefOf.LifeStages_Transgendered == null ||
+                    hediff.def != HediffDefOf.LifeStages_Transgendered) continue;
+
+                pawn.health.RemoveHediff(hediff);
+            }
+        }
+
+        public static void ResolvePuberty(Pawn pawn)
+        {
+            if (pawn?.health?.hediffSet.hediffs == null) return;
+            foreach (var hediff in pawn?.health?.hediffSet.hediffs)
+            {
+                if (HediffDefOf.LifeStages_Transgendered == null ||
+                    hediff.def != HediffDefOf.LifeStages_Transgendered) continue;
+
+                pawn.health.RemoveHediff(hediff);
+            }
+        }
     }
 }

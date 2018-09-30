@@ -26,7 +26,7 @@ namespace HumanlikeLifeStages
                 TaleRecorder.RecordTale( TaleDefOf.DidSurgery, billDoer, pawn );
             }
 
-            ResolveTransgender(pawn);
+            PawnHelper.ResolveTransgender(pawn);
                 
             pawn.gender = newGender(pawn);
 
@@ -49,18 +49,6 @@ namespace HumanlikeLifeStages
                 
                 if (HediffDefOf.LifeStages_BodyHair != null && hediff.def == HediffDefOf.LifeStages_BodyHair && Rand.Bool)
                     pawn.health.RemoveHediff(hediff);
-            }
-        }
-
-        private void ResolveTransgender(Pawn pawn)
-        {
-            if (pawn?.health?.hediffSet.hediffs == null) return;
-            foreach (var hediff in pawn?.health?.hediffSet.hediffs.ToArray())
-            {
-                if (HediffDefOf.LifeStages_Transgendered == null ||
-                    hediff.def != HediffDefOf.LifeStages_Transgendered) continue;
-                
-                pawn.health.RemoveHediff(hediff);
             }
         }
 

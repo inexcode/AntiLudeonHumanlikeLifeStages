@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Verse;
@@ -116,7 +115,11 @@ namespace HumanlikeLifeStages
 
         public static bool AnyTestes(Pawn pawn)
         {
-            return pawn.health.hediffSet.hediffs.Any(PubertyHelper.hasTestes);
+            return pawn.health.hediffSet.hediffs.Any(hasTestes);
+        }
+        public static bool AnyWomb(Pawn pawn)
+        {
+            return pawn.health.hediffSet.hediffs.Any(hasWomb);
         }
     }
 }
