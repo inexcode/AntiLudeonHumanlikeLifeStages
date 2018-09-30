@@ -178,7 +178,7 @@ namespace HumanlikeLifeStages
             {
                 foreach (var humanoidRace in fleshRaces)
                 {
-                    for (var index = 0; index < humanoidRace.race.lifeStageAges.Count; index++)
+                    for (var index = 0; index < humanoidRace.race.lifeStageAges.Count && index < fs.Length; index++)
                     {
                         var raceLifeStageAge = humanoidRace.race.lifeStageAges[index];
 
@@ -186,7 +186,7 @@ namespace HumanlikeLifeStages
                         raceLifeStageAge.minAge = fs[index] / 13f * PubertyOnset;
 
                         Log.Message(
-                            "Setting [" + raceLifeStageAge + "] to have min age of " + raceLifeStageAge.minAge +
+                            "Setting [" + humanoidRace + ", step "+index+"] to have min age of " + raceLifeStageAge.minAge +
                             " from " + age);
                     }
                 }
