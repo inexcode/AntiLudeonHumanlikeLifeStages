@@ -29,6 +29,12 @@ namespace HumanlikeLifeStages
             ChestManager.intialChest(pawn);
             
             SettingHelper.latest.update();
+
+            if (AndroidsMod.isRelavent(pawn))
+            {
+                DoPuberty(pawn, maturityPart);
+                return;
+            }
             
             var yearsOld = pawn.ageTracker.AgeBiologicalYears;
 
@@ -43,13 +49,18 @@ namespace HumanlikeLifeStages
             }
             else
             {
-                for (var i = SplitsForPuberty; i > 0 ; i--)
-                {
-                    PubertyHelper.applyPubertyDay(pawn, 1f * i / SplitsForPuberty);
-                }
-                
-                pawn.health.AddHediff(HediffDefOf.LifeStages_Adult, maturityPart);
+                DoPuberty(pawn, maturityPart);
             }
+        }
+
+        private static void DoPuberty(Pawn pawn, BodyPartRecord maturityPart)
+        {
+            for (var i = SplitsForPuberty; i > 0; i--)
+            {
+                PubertyHelper.applyPubertyDay(pawn, 1f * i / SplitsForPuberty);
+            }
+
+            pawn.health.AddHediff(HediffDefOf.LifeStages_Adult, maturityPart);
         }
     }
 }
