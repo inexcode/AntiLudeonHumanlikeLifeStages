@@ -39,7 +39,7 @@
 
     <HediffDef ParentName="NaturalLifeStagePartBase">
         <defName>LifeStages_Simple</defName>
-        <label>Pleopods</label>
+        <label>Cloaca</label>
     </HediffDef>
 
     <!-- Animal hermaphrodite ie slug -->
@@ -49,6 +49,25 @@
         <label>Ovotestis</label>
     </HediffDef>
 
+    
+    <!-- Plants -->
+    <HediffDef ParentName="NaturalLifeStagePartBaseHair">
+        <defName>LifeStages_FloweringBody</defName>
+        <label>Flower Petals</label>
+    </HediffDef>
+
+    <HediffDef ParentName="NaturalLifeStagePartBaseHair">
+        <defName>LifeStages_Leaves</defName>
+        <label>Leaves</label>
+    </HediffDef>
+
+
+    <HediffDef ParentName="NaturalLifeStagePartBaseHair">
+        <defName>LifeStages_Bark</defName>
+        <label>Bark</label>
+    </HediffDef>
+    
+    
     <!-- Plants ASexual -->
 
     <HediffDef ParentName="NaturalLifeStagePartBase">
