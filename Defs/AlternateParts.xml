@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <HediffDef ParentName="NaturalLifeStagePartBaseMale">
+        <defName>LifeStages_GenericMale</defName>
+        <label>unidentifiable intromittent organ</label>
+    </HediffDef>
+
+    <HediffDef ParentName="NaturalLifeStagePartBaseFemale">
+        <defName>LifeStages_GenericFemale</defName>
+        <label>unidentifiable ovarian organ</label>
+    </HediffDef>
+
+    
+    <!-- Animal Kingdom -->
+    
+    <!-- Bugs and Sea Bugs (Shrimp)-->
+
+    <HediffDef ParentName="NaturalLifeStagePartBaseFemale">
+        <defName>LifeStages_IncectFemale</defName>
+        <label>Ovipore</label>
+    </HediffDef>
+
+    <HediffDef ParentName="NaturalLifeStagePartBaseFemale">
+        <defName>LifeStages_IncectFemaleAlt</defName>
+        <label>Spermatheca</label>
+    </HediffDef>
+
+    <HediffDef ParentName="NaturalLifeStagePartBaseMale">
+        <defName>LifeStages_IncectMale</defName>
+        <label>Spermatophore</label>
+    </HediffDef>
+
+    <HediffDef ParentName="NaturalLifeStagePartBaseMale">
+        <defName>LifeStages_ShrimpMale</defName>
+        <label>Pleopods</label>
+    </HediffDef>
+
+    <!-- Unevolved -->
+
+    <HediffDef ParentName="NaturalLifeStagePartBase">
+        <defName>LifeStages_Simple</defName>
+        <label>Pleopods</label>
+    </HediffDef>
+
+    <!-- Animal hermaphrodite ie slug -->
+    <!-- gastropod ovotestis or hermaphroditic gland -->
+    <HediffDef ParentName="NaturalLifeStagePartBase">
+        <defName>LifeStages_Ovotestis</defName>
+        <label>Ovotestis</label>
+    </HediffDef>
+
+    <!-- Plants ASexual -->
+
+    <HediffDef ParentName="NaturalLifeStagePartBase">
+        <defName>LifeStages_SimplePlant</defName>
+        <label>Sporophyte</label>
+    </HediffDef>
+    
+    <!-- Plants Sexual -->
+    
+    
+
+    <HediffDef ParentName="NaturalLifeStagePartBaseFemale">
+        <defName>LifeStages_PlantFemale</defName>
+        <label>Gynoecium</label>
+    </HediffDef>
+
+    <HediffDef ParentName="NaturalLifeStagePartBaseMale">
+        <defName>LifeStages_PlantMale</defName>
+        <label>Stamen</label>
+    </HediffDef>
+    
+    
+    
+    
+</Defs>

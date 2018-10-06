@@ -126,7 +126,7 @@
     </HediffDef>
 
 
-    <HediffDef ParentName="NaturalLifeStagePartBase">
+    <HediffDef Name="NaturalLifeStagePartBaseFemale" ParentName="NaturalLifeStagePartBase">
         <defName>LifeStages_Womb</defName>
         <label>Womb and Ovaries</label>
         <stages>
@@ -139,7 +139,7 @@
         </stages>
     </HediffDef>
 
-    <HediffDef ParentName="NaturalLifeStagePartBase">
+    <HediffDef Name="NaturalLifeStagePartBaseMale" ParentName="NaturalLifeStagePartBase">
         <defName>LifeStages_Testes</defName>
         <label>Testes</label>
         <stages>
