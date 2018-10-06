@@ -45,6 +45,26 @@ namespace HumanlikeLifeStages
         public static HediffDef LifeStages_Infertile_BirthDefect;
         public static HediffDef LifeStages_Neutered;
 
+        public static HediffDef LifeStages_Scales;
+        public static HediffDef LifeStages_FloweringBody;
+        public static HediffDef LifeStages_Leaves;
+        public static HediffDef LifeStages_Bark;
+        
+        public static HediffDef LifeStages_GenericMale;
+        public static HediffDef LifeStages_GenericFemale;
+
+        public static HediffDef LifeStages_IncectFemale;
+        public static HediffDef LifeStages_IncectFemaleAlt;
+        public static HediffDef LifeStages_IncectMale;
+        
+        public static HediffDef LifeStages_ShrimpMale;
+        
+        public static HediffDef LifeStages_Simple;
+        public static HediffDef LifeStages_Ovotestis;
+
+        public static HediffDef LifeStages_SimplePlant;
+        public static HediffDef LifeStages_PlantFemale;
+        public static HediffDef LifeStages_PlantMale;
     }
 
     [DefOf]

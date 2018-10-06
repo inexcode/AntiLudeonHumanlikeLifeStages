@@ -19,15 +19,9 @@ namespace HumanlikeLifeStages
             RecipeDef srs = DefDatabase<RecipeDef>.GetNamed("HumanlikeLifeStages_SRS");
             RecipeDef nullo = DefDatabase<RecipeDef>.GetNamed("HumanlikeLifeStages_Neuter");
             
-            var fleshRaces = DefDatabase<ThingDef>
-                .AllDefsListForReading
-                .Where(t => t.race?.IsFlesh ?? false); // return __instance.FleshType != FleshTypeDefOf.Mechanoid;
+            var humanoidRaces = HumanoidRaces();
 
-            var humanoidRaces = fleshRaces.Where(td => td.race.Humanlike);
-
-            var fleshBodies = humanoidRaces
-                .Select(t => t.race.body)
-                .Distinct();
+            var fleshBodies = FleshBodiedRaces(humanoidRaces);
 
             // insert reproductive parts
             foreach (BodyDef body in fleshBodies)
@@ -52,6 +46,24 @@ namespace HumanlikeLifeStages
             
             
             SettingHelper.latest.update();
+        }
+
+        private static IEnumerable<BodyDef> FleshBodiedRaces(IEnumerable<ThingDef> humanoidRaces)
+        {
+            var fleshBodies = humanoidRaces
+                .Select(t => t.race.body)
+                .Distinct();
+            return fleshBodies;
+        }
+
+        public static IEnumerable<ThingDef> HumanoidRaces()
+        {
+            var fleshRaces = DefDatabase<ThingDef>
+                .AllDefsListForReading
+                .Where(t => t.race?.IsFlesh ?? false); // return __instance.FleshType != FleshTypeDefOf.Mechanoid;
+
+            var humanoidRaces = fleshRaces.Where(td => td.race.Humanlike);
+            return humanoidRaces;
         }
     }
 

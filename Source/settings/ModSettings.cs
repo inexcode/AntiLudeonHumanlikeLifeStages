@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
 using UnityEngine;
@@ -8,7 +9,13 @@ namespace HumanlikeLifeStages
 {
     class SettingsUIMod : Mod
     {
+        enum Page
+        {
+            l1, 
+            aliens
+        }
         private ModSettings settings;
+        private Page page = Page.l1;
 
         public SettingsUIMod(ModContentPack content) : base(content)
         {
@@ -22,6 +29,41 @@ namespace HumanlikeLifeStages
         public override string SettingsCategory() => "Humanlike Life Stages!";
 
         public override void DoSettingsWindowContents(Rect inRect)
+        {
+            if (page == Page.l1)
+            {
+                L1(inRect);
+            }else if (page == Page.aliens)
+            {
+                aliens(inRect);
+            }
+            else
+            {
+                page = Page.l1;
+            }
+
+            this.settings.Write();
+            this.settings.update();
+        }
+
+
+        private ThingDef current = ThingDefOf.Human;
+        
+        private void aliens(Rect inRect)
+        {    
+            var clicked = Widgets.ButtonText(
+                inRect.TopHalf().TopHalf().TopHalf().TopHalf().LeftHalf(),
+                "Back"
+            );
+            
+           
+            if (clicked)
+            {
+                page = Page.l1;
+            }
+        }
+
+        private void L1(Rect inRect)
         {
             this.settings.woohooChildChance = Widgets.HorizontalSlider(
                 inRect.TopHalf().TopHalf().TopHalf().ContractedBy(4f),
@@ -88,11 +130,18 @@ namespace HumanlikeLifeStages
 
             ThirdGendered(inRect);
 
-            Widgets.Label(inRect.BottomHalf().BottomHalf().BottomHalf(),
+            var clicked = Widgets.ButtonText(
+                inRect.BottomHalf().BottomHalf().BottomHalf().BottomHalf().LeftHalf(),
+                "Aliens Configurations"
+            );
+
+            Widgets.Label(inRect.BottomHalf().BottomHalf().BottomHalf().RightHalf(),
                 "That's all, thanks for playing. -Alice.\nSource Code Available at https://github.com/alycecil");
 
-            this.settings.Write();
-            this.settings.update();
+            if (clicked)
+            {
+                page = Page.aliens;
+            }
         }
 
         private void ThirdGendered(Rect inRect)

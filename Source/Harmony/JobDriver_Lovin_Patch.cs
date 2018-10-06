@@ -24,13 +24,13 @@ namespace HumanlikeLifeStages
                     if (!FertilityChecker.is_fertile(pawn)) return;
                     if (!FertilityChecker.is_fertile(mate)) return;
                     //for each womb make pregnant
-                    if (FertilityChecker.is_FemaleForBabies(pawn) && Rand.Value < SettingHelper.latest.woohooChildChance)
+                    if (FertilityChecker.is_FemaleForBabies(pawn) && Rand.Value+0.01f < SettingHelper.latest.woohooChildChance)
                     {
                         //(donor , has womb)
                         Mate.Mated(mate, pawn);
                     }
 
-                    if (FertilityChecker.is_FemaleForBabies(mate) && Rand.Value < SettingHelper.latest.woohooChildChance)
+                    if (FertilityChecker.is_FemaleForBabies(mate) && Rand.Value+0.01f < SettingHelper.latest.woohooChildChance)
                     {
                         //(donor , has womb)
                         Mate.Mated(pawn, mate);

@@ -15,6 +15,12 @@
     
     <!-- Bugs and Sea Bugs (Shrimp)-->
 
+
+    <HediffDef ParentName="NaturalLifeStagePartBaseHair">
+        <defName>LifeStages_Scales</defName>
+        <label>Scales</label>
+    </HediffDef>
+
     <HediffDef ParentName="NaturalLifeStagePartBaseFemale">
         <defName>LifeStages_IncectFemale</defName>
         <label>Ovipore</label>
