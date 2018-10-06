@@ -183,17 +183,14 @@ namespace HumanlikeLifeStages
                         var raceLifeStageAge = humanoidRace.race.lifeStageAges[index];
 
                         var age = raceLifeStageAge.minAge;
-                        raceLifeStageAge.minAge = fs[index] / 13f * PubertyOnset;
+                        raceLifeStageAge.minAge = Math.Max(age,fs[index]) / 13 * PubertyOnset;
 
                         Log.Message(
                             "Setting [" + humanoidRace + ", step "+index+"] to have min age of " + raceLifeStageAge.minAge +
                             " from " + age);
                     }
                 }
-            }
-            catch (Exception)
-            {
-            }
+            } catch (Exception) { }
         }
     }
 }
