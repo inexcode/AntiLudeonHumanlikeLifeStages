@@ -47,7 +47,7 @@ namespace HumanlikeLifeStages
 
 
         /***** MOD INTEGRATION ****/
-        public static List<PubertySetting> GetPubertySettingsFor(this ModSettings that, ThingDef currentDef)
+        public static RacePubertySetting GetPubertySettingsFor(this ModSettings that, ThingDef currentDef)
         {
             //that.racialSettings = new List<RacePubertySetting>();
             RacePubertySetting mine = null;
@@ -83,7 +83,7 @@ namespace HumanlikeLifeStages
             }
 
 
-            return mine.list;
+            return mine;
         }
 
         private static bool IsThatDef( this RacePubertySetting x, ThingDef currentDef)
@@ -94,6 +94,7 @@ namespace HumanlikeLifeStages
         private static RacePubertySetting BuildPubertySettings(ThingDef currentDef)
         {
             List<PubertySetting> list;
+            bool hasPubertyAtBirth = false;
             if (currentDef.defName.EqualsIgnoreCase("Alien_Cactoid")
                 || currentDef.defName.EqualsIgnoreCase("Alien_Tree"))
             {
@@ -113,6 +114,19 @@ namespace HumanlikeLifeStages
             )
             {
                 list = elderDefaults();
+            }else if (AndroidsMod.isRelaventDef(currentDef))
+            {
+                
+                hasPubertyAtBirth = true;
+
+                if (AndroidsMod.isAndroid(currentDef))
+                {
+                    list = humanDefaults();    
+                }
+                else
+                {
+                    list = boringDefault();
+                }
             }
             else
             {
@@ -242,6 +256,36 @@ namespace HumanlikeLifeStages
             new PubertySetting(HediffDefOf.LifeStages_Bark, Off, All),
             new PubertySetting(HediffDefOf.LifeStages_Leaves, Off, All),
             new PubertySetting(HediffDefOf.LifeStages_FloweringBody, Off, All),
+            new PubertySetting(HediffDefOf.LifeStages_Scales, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Plumage, Off, Off),
+        };
+        
+        public static List<PubertySetting> boringDefault() => new List<PubertySetting>()
+        {
+            new PubertySetting(HediffDefOf.LifeStages_Womb, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Testes, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Pecs, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Breasts, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Ovotestis, Off, Off),
+
+            new PubertySetting(HediffDefOf.LifeStages_GenericMale, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_GenericFemale, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_IncectFemale, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_IncectFemaleAlt, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_IncectMale, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_ShrimpMale, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Simple, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_SimplePlant, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_PlantMale, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_PlantFemale, Off, Off),
+
+            new PubertySetting(HediffDefOf.LifeStages_BodyHair, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_PubicHair, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_SporingBody, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Goo, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Bark, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Leaves, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_FloweringBody, Off, Off),
             new PubertySetting(HediffDefOf.LifeStages_Scales, Off, Off),
             new PubertySetting(HediffDefOf.LifeStages_Plumage, Off, Off),
         };

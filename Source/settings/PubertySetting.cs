@@ -6,15 +6,16 @@ using Verse;
 namespace HumanlikeLifeStages
 {
     [Serializable]
-    //public Dictionary<ThingDef, List<PubertySetting>> racialSettings = DefaultDictionary();
     public class RacePubertySetting : IExposable
     {
         public StringWrapper appliedTo;
+        public BoolWrapper pubertySetting;
         public List<PubertySetting> list;
 
         public void ExposeData()
         {
             Scribe_Deep.Look(ref this.appliedTo, "appliedTo");
+            Scribe_Deep.Look(ref this.pubertySetting, "pubertySetting");
             Scribe_Collections.Look(ref this.list, "appliedToList");
         }
     }
@@ -103,6 +104,30 @@ namespace HumanlikeLifeStages
 
             return Gender.None;
         }
+        
+        
+        public bool IsSecondaryAssigned()
+        {
+            return genderRoleIndex != 0;
+        }
+
+        public bool IsSecondaryAll()
+        {
+            return genderRoleIndex == 4;
+        }
+
+        public Gender GetSecondaryGender()
+        {
+            switch (genderRoleIndex)
+            {
+                case 1:
+                    return Gender.Male;
+                case 2:
+                    return Gender.Female;
+            }
+
+            return Gender.None;
+        }
 
         public static Texture2D off() => Widgets.CheckboxOffTex;
 
@@ -134,9 +159,26 @@ namespace HumanlikeLifeStages
     {
         public int value;
 
-        public void ExposeData() => Scribe_Values.Look(value: ref this.value, label: "stringWrapper");
+        public void ExposeData() => Scribe_Values.Look(value: ref this.value, label: "intWrapper");
 
         public static implicit operator int(IntWrapper sw) => sw.value;
         public static implicit operator IntWrapper(int s) => new IntWrapper() {value = s};
     }
+    public class BoolWrapper : IExposable
+    {
+        public bool value;
+
+        public void ExposeData() => Scribe_Values.Look(value: ref this.value, label: "boolWrapper");
+
+        
+        public static implicit operator bool(BoolWrapper sw) => sw.value;
+        public static implicit operator BoolWrapper(bool s) => new BoolWrapper() {value = s};
+        
+        public static implicit operator int(BoolWrapper sw) => sw.value?1:0;
+        public static implicit operator BoolWrapper(int s) => new BoolWrapper() {value = s>0};
+        
+        public static implicit operator string(BoolWrapper sw) => sw.value.ToStringSafe();
+        public static implicit operator BoolWrapper(string s) => new BoolWrapper() {value = Convert.ToBoolean(s)};
+    }
+    
 }

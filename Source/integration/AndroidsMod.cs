@@ -5,23 +5,29 @@ namespace HumanlikeLifeStages
     public static class AndroidsMod
     {
         private static ThingDef ChjDroid = DefDatabase<ThingDef>.GetNamedSilentFail("ChjDroid"),
+            ChjBattleDroid= DefDatabase<ThingDef>.GetNamedSilentFail("ChjBattleDroid"),
             ChjAndroid = DefDatabase<ThingDef>.GetNamedSilentFail("ChjAndroid");
         
         
-        static bool isDroid(Pawn p)
+        static bool isDroid(ThingDef def)
         {
-            return p.def == ChjDroid;
+            return def == ChjDroid || def == ChjBattleDroid;
         }
         
         
-        static bool isAndroid(Pawn p)
+        public static bool isAndroid(ThingDef def)
         {
-            return p.def == ChjAndroid;
+            return def == ChjAndroid;
         }
 
         public static bool isRelavent(Pawn pawn)
         {
-            return isDroid(pawn) || isAndroid(pawn);
+            return isRelaventDef(pawn.def);
+        }
+
+        public static bool isRelaventDef(ThingDef currentDef)
+        {
+            return isAndroid(currentDef) || isDroid(currentDef);
         }
     }
 }

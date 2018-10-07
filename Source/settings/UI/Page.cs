@@ -47,8 +47,9 @@ namespace HumanlikeLifeStages
                 ">"
             );
 
-            var rect = inRect.BottomPart(.8f).ContractedBy(4f);
-
+            var rect = inRect.BottomPart(.85f).ContractedBy(4f);
+            
+            
             that.RenderOptions(currentDef, rect, previous || next);
 
 
@@ -179,20 +180,24 @@ namespace HumanlikeLifeStages
             {
                 throw new Exception("Why doesn't settings exist yet ?");
             }
-            List<PubertySetting> list = that.Settings.GetPubertySettingsFor(currentDef);
+            var settings = that.Settings.GetPubertySettingsFor(currentDef);
             
-            if (list == null)
+            if (settings?.list == null)
             {
                 throw new Exception("["+currentDef.defName+"] Race has no special settings? Alice said we should always get things here. Can you send her this?");
             }
-            var listCount = list.Count;
-            var splits = Split(rect, listCount).ToArray();
+            var listCount = settings.list.Count;
+            var splits = Split(rect, listCount+1).ToArray();
 
+            Widgets.CheckboxLabeled(new Rect(rect.x,rect.y,rect.height/5f, rect.height/10f),"Has Prepubescence stage?",ref settings.pubertySetting.value );
+            
+            
+            rect = rect.BottomPart(.9f);
 
             for (int i = 0; i < listCount; i++)
             {
-                var setting = list[i];
-                var myRect = splits[i];
+                var setting = settings.list[i];
+                var myRect = splits[i+1];
 
                 setting.WidgetDraw(myRect);
             }
