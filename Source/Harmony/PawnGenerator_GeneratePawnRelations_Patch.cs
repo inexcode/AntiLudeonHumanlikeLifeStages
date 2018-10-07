@@ -28,8 +28,6 @@ namespace HumanlikeLifeStages
 
             ChestManager.intialChest(pawn);
             
-            SettingHelper.latest.update();
-
             if (AndroidsMod.isRelavent(pawn))
             {
                 DoPuberty(pawn, maturityPart);

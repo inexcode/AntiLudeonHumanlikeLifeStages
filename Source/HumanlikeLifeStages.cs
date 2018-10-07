@@ -49,6 +49,9 @@ namespace HumanlikeLifeStages
         public static HediffDef LifeStages_FloweringBody;
         public static HediffDef LifeStages_Leaves;
         public static HediffDef LifeStages_Bark;
+        public static HediffDef LifeStages_Goo;
+        public static HediffDef LifeStages_SporingBody;
+        public static HediffDef LifeStages_Plumage;
         
         public static HediffDef LifeStages_GenericMale;
         public static HediffDef LifeStages_GenericFemale;
