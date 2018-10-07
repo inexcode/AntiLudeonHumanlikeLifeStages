@@ -47,8 +47,7 @@
         <label>Cloaca</label>
         <description>a common cavity at the end of the digestive tract for the release of both excretory and genital
             products in vertebrates (except most mammals) and certain invertebrates. This organ is found on all genders
-            of a species and mating is performed by the aptly, colloquial named "Cloaca Kiss."
-        </description>
+            of a species and mating is performed by the aptly, colloquial named "Cloaca Kiss."</description>
     </HediffDef>
 
     <!-- Animal hermaphrodite ie slug -->
@@ -123,16 +122,14 @@
         <defName>LifeStages_PlantFemale</defName>
         <label>Gynoecium</label>
         <description>collective term for the parts of a flower that produce ovules and ultimately develop into the fruit
-            and seeds.
-        </description>
+            and seeds.</description>
     </HediffDef>
 
     <HediffDef ParentName="NaturalLifeStagePartBaseMale">
         <defName>LifeStages_PlantMale</defName>
         <label>Stamen</label>
         <description>the male fertilizing organ of a flower, typically consisting of a pollen-containing anther and a
-            filament.
-        </description>
+            filament.</description>
     </HediffDef>
     
     
