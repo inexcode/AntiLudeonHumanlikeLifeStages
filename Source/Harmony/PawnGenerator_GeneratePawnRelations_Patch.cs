@@ -29,7 +29,7 @@ namespace HumanlikeLifeStages
             var pubertySettings = SettingHelper.latest.GetPubertySettingsFor(pawn.def);
             ChestManager.intialChest(pawn);
             
-            if (pubertySettings.pubertySetting)
+            if (pubertySettings.instantPubertySetting)
             {
                 DoPuberty(pawn, maturityPart);
                 return;

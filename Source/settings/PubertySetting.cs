@@ -10,13 +10,13 @@ namespace HumanlikeLifeStages
     public class RacePubertySetting : IExposable
     {
         public StringWrapper appliedTo;
-        public BoolWrapper pubertySetting;
+        public BoolWrapper instantPubertySetting;
         public List<PubertySetting> list;
 
         public void ExposeData()
         {
             Scribe_Deep.Look(ref this.appliedTo, "appliedTo");
-            Scribe_Deep.Look(ref this.pubertySetting, "pubertySetting");
+            Scribe_Deep.Look(ref this.instantPubertySetting, "instantPubertySetting");
             Scribe_Collections.Look(ref this.list, "appliedToList");
         }
     }
@@ -49,6 +49,7 @@ namespace HumanlikeLifeStages
             Scribe_Deep.Look(ref this.label, "label");
             Scribe_Deep.Look(ref this.genderRoleIndex, "genderRoleIndex");
             Scribe_Deep.Look(ref this.secondaryGenderRoleIndex, "secondaryGenderRoleIndex");
+            Scribe_Deep.Look(ref this.where, "where");
             
         }
 

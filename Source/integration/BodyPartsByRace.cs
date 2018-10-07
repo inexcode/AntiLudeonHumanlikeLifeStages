@@ -133,7 +133,7 @@ namespace HumanlikeLifeStages
                 list = humanDefaults();
             }
 
-            return new RacePubertySetting(){appliedTo = currentDef.defName, list = list, pubertySetting = hasPubertyAtBirth};
+            return new RacePubertySetting(){appliedTo = currentDef.defName, list = list, instantPubertySetting = hasPubertyAtBirth};
         }
 
         public static readonly int Off = 0, Male = 1, Female = 2, Other = 3, All = 4;
@@ -184,7 +184,7 @@ namespace HumanlikeLifeStages
             new PubertySetting(HediffDefOf.LifeStages_IncectFemaleAlt, Off, Off, Off),
             new PubertySetting(HediffDefOf.LifeStages_IncectMale, Off, Off, Off),
             new PubertySetting(HediffDefOf.LifeStages_ShrimpMale, Off, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Simple, All, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Simple, All, Off, Groin),
             new PubertySetting(HediffDefOf.LifeStages_SimplePlant, Off, Off, Off),
             new PubertySetting(HediffDefOf.LifeStages_PlantMale, Off, Off, Off),
             new PubertySetting(HediffDefOf.LifeStages_PlantFemale, Off, Off, Off),

@@ -12,8 +12,8 @@ namespace HumanlikeLifeStages
 
         public static BodyPartDef Where(this PubertySetting that)
         {
-            if (that.@where != null)
-                switch (that.@where)
+            if (that.where != null)
+                switch (that.where)
                 {
                     case 1:
                         return BodyPartDefOf.Groin;
@@ -22,19 +22,22 @@ namespace HumanlikeLifeStages
                     case 3:
                         return BodyPartDefOf.Chest;
                 }
-            else that.@where = 0;
+            else that.where = 0;
             
             return null;
         }
         
+        
+        private static string WhereLabel(PubertySetting that)
+        {
+            var loc = that.Where();
+            if (loc == BodyPartDefOf.LifeStages_ReproductiveOrgans)
+                return "Inside";
+            return loc?.label?.CapitalizeFirst() ?? "Skin";
+        }
+        
         public static void WidgetDraw(this PubertySetting that, Rect rect)
         {
-            var rightPart = rect.RightPart(.85f);
-            if (that.description?.value.NullOrEmpty() ?? true)
-                Widgets.Label(rightPart, that.label);
-            else
-                Widgets.Label(rightPart, that.label + " - " + that.description);
-
             var splits = rect.SplitX(14).ToArray();
             var texture2Ds = buttonIcons();
             
@@ -57,13 +60,18 @@ namespace HumanlikeLifeStages
             }
 
 
-            var clicked = Widgets.ButtonText(splits[2].ContractedBy(2f), that.Where()?.label ?? "Skin");
+            var clicked = Widgets.ButtonText(splits[2].ContractedBy(2f), WhereLabel(that));
             if (clicked)
             {
                 that.where++;
                 that.where %= 4;
             }
 
+            var rightPart = new Rect(splits[3].x, rect.y, rect.width-(splits[3].x-rect.x) ,rect.height);
+            if (that.description?.value.NullOrEmpty() ?? true)
+                Widgets.Label(rightPart, that.label);
+            else
+                Widgets.Label(rightPart, that.label + " - " + that.description);
         }
 
 

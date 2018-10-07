@@ -206,10 +206,10 @@ namespace HumanlikeLifeStages
             Widgets.Label(labelArea[2],
                 "Where");
 
-            if (settings.pubertySetting == null)
-                settings.pubertySetting = false;
+            if (settings.instantPubertySetting == null)
+                settings.instantPubertySetting = false;
             
-            Widgets.CheckboxLabeled(labelArea[labelArea.Length - 2], "Born Adult?", ref settings.pubertySetting.value);
+            Widgets.CheckboxLabeled(labelArea[labelArea.Length - 2], "Born Adult?", ref settings.instantPubertySetting.value);
         }
 
         private static void RenderOptions(int listCount, RacePubertySetting settings, Rect[] splits)
