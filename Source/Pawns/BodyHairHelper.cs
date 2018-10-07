@@ -6,25 +6,25 @@ using Verse;
 
 namespace HumanlikeLifeStages
 {
-    public class BodyHairHelper
+    public static class BodyHairHelper
     {
-        
-        public static void DecideTooAddHair(Pawn pawn)
+        public static void DecideTooAddHair(this RacePubertySetting pubertySettings, Pawn pawn)
         {
-            if (!HasPubicHair(pawn, BodyCache.Groin(pawn)))
+            var forHair = pubertySettings.chanceForHair(pawn);
+            if (!pubertySettings.HasPubicHair(pawn, BodyCache.Groin(pawn)))
             {
-                if (Rand.Value < chanceForHair(pawn) * 5)
+                if (Rand.Value < forHair * 5)
                 {
-                    AddPubicHair(pawn);
+                    pubertySettings.AddPubicHair(pawn);
                 }
-            } else if (Rand.Value < chanceForHair(pawn)) 
+            } else if (Rand.Value < forHair) 
             {
-                AddHair(pawn, whatPart(pawn));
+                pubertySettings.AddHair(pawn, whatPart(pawn));
             }
         }
 
 
-        private static void AddPubicHair(Pawn pawn)
+        private static void AddPubicHair(this RacePubertySetting pubertySettings, Pawn pawn)
         {
             BodyPartRecord groin = BodyCache.Groin(pawn);
 
@@ -34,12 +34,12 @@ namespace HumanlikeLifeStages
         }
 
 
-        private static float chanceForHair(Pawn pawn)
+        private static float chanceForHair(this RacePubertySetting pubertySettings, Pawn pawn)
         {
-            return PubertyHelper.AnyTestes(pawn) ? SettingHelper.latest.maleHairGrowthRate : SettingHelper.latest.otherHairGrowthRate;
+            return pubertySettings.AnyTestes(pawn) ? SettingHelper.latest.maleHairGrowthRate : SettingHelper.latest.otherHairGrowthRate;
         }
 
-        public static void AddHair(Pawn pawn, BodyPartRecord whereHair)
+        public static void AddHair(this RacePubertySetting pubertySettings, Pawn pawn, BodyPartRecord whereHair)
         {
             if (whereHair == null) return;
 
@@ -63,7 +63,7 @@ namespace HumanlikeLifeStages
             return validParts.OrderByDescending(x => Rand.Value).First();
         }
 
-        public static IEnumerable<BodyPartDef> whatCanGetHairy(Pawn pawn)
+        public static IEnumerable<BodyPartDef> WhatSkinCanGetHairy(Pawn pawn)
         {
             yield return BodyPartDefOf.Chest;
             yield return RimWorld.BodyPartDefOf.Torso;
@@ -74,8 +74,9 @@ namespace HumanlikeLifeStages
             yield return RimWorld.BodyPartDefOf.Neck;
         }
 
-        private static bool HasPubicHair(Pawn pawn, BodyPartRecord bodyPartRecord = null)
+        private static bool HasPubicHair(this RacePubertySetting pubertySettings, Pawn pawn, BodyPartRecord bodyPartRecord = null)
         {
+            var set = pubertySettings.Secondary(BodyPartsByRace.Groin);
             return pawn.health.hediffSet.HasHediff(HediffDefOf.LifeStages_PubicHair, bodyPartRecord);
         }
     }

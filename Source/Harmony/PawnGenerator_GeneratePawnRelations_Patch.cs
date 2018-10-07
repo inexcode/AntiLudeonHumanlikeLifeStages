@@ -26,7 +26,7 @@ namespace HumanlikeLifeStages
             
             if(pawn.health.hediffSet.HasHediff(HediffDefOf.LifeStages_Adult)) return;
 
-            var pubertySettings = SettingHelper.latest.GetPubertySettingsFor(pawn.def);
+            var pubertySettings = pawn.RacePubertySetting();
             ChestManager.intialChest(pawn);
             
             if (pubertySettings.instantPubertySetting)

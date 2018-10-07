@@ -13,7 +13,9 @@ namespace HumanlikeLifeStages
             var basis = PawnCapacityUtility.CalculateTagEfficiency(diffSet, 
                 BodyPartTagDefOf.FertilitySource, 3.40282347E+38f, default(FloatRange), impactors);
 
-            return PubertyHelper.getFactorFertility(diffSet) * basis * PubertyHelper.isPostPubescence(diffSet);
+            RacePubertySetting pubertySettings = SettingHelper.latest.GetPubertySettingsFor(diffSet.pawn.def);
+
+            return PubertyHelper.getFactorFertility(pubertySettings,diffSet) * basis * PubertyHelper.isPostPubescence(diffSet);
         }
         
         public override bool CanHaveCapacity( BodyDef body )

@@ -1,33 +1,35 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Verse;
 
 namespace HumanlikeLifeStages
 {
-    public class PubertyHelper
+    public static class PubertyHelper
     {
         public static void applyPubertyDay(Pawn pawn, float severity)
         {
-            if (pawn?.gender == Gender.None || pawn?.gender == null ||
-                !Recipe_Neuter.PartsToApplyOn(pawn).Any())
+            if (!Recipe_Neuter.PartsToApplyOn(pawn).Any())
             {
                 return;
             }
 
-            var sexOrgans = RelaventHeDiffs(pawn.health.hediffSet);
+            RacePubertySetting pubertySettings = pawn.RacePubertySetting();
+
+            var sexOrgans = pubertySettings.RelaventHeDiffs(pawn.health.hediffSet);
 
             if (sexOrgans.Any())
             {
-                ChestManager.pubertyChest(pawn, severity);
-                BodyHairHelper.DecideTooAddHair(pawn);
+                ChestManager.pubertyChest(pawn, severity, pubertySettings);
+                pubertySettings.DecideTooAddHair(pawn);
             }
             else
             {
-                roleOrganMaturity(pawn, severity);
+                pubertySettings.roleOrganMaturity(pawn, severity);
             }
         }
 
-        private static void roleOrganMaturity(Pawn pawn, float severity)
+        private static void roleOrganMaturity(this RacePubertySetting that, Pawn pawn, float severity)
         {
             //delay puberty onset
             if (Rand.Value < SettingHelper.latest.EarlyPubertyChance ||
@@ -44,24 +46,40 @@ namespace HumanlikeLifeStages
 
                 if (intersex)
                 {
-                    pawn.health.AddHediff(HediffDefOf.LifeStages_Testes, BodyCache.Groin(pawn));
-                    pawn.health.AddHediff(HediffDefOf.LifeStages_Womb, BodyCache.LifeStages_ReproductiveOrgans(pawn));
+                    that.AddOtherParts(pawn);
                 }
                 else
                 {
                     switch (pawn.gender)
                     {
                         case Gender.Male:
-                            pawn.health.AddHediff(HediffDefOf.LifeStages_Testes, BodyCache.Groin(pawn));
+                            
+                            that.AddMaleParts(pawn);
                             break;
                         case Gender.Female:
-                            pawn.health.AddHediff(HediffDefOf.LifeStages_Womb, BodyCache.LifeStages_ReproductiveOrgans(pawn));
+                            that.AddFemaleParts(pawn);
                             break;
                     }
                 }
             }
         }
-        
+
+        private static void AddOtherParts(this RacePubertySetting that, Pawn pawn)
+        {
+            pawn.health.AddHediff(HediffDefOf.LifeStages_Testes, BodyCache.Groin(pawn));
+            pawn.health.AddHediff(HediffDefOf.LifeStages_Womb, BodyCache.LifeStages_ReproductiveOrgans(pawn));
+        }
+
+        private static void AddFemaleParts(this RacePubertySetting that, Pawn pawn)
+        {
+            pawn.health.AddHediff(HediffDefOf.LifeStages_Womb, BodyCache.LifeStages_ReproductiveOrgans(pawn));
+        }
+
+        private static void AddMaleParts(this RacePubertySetting that, Pawn pawn)
+        {
+            pawn.health.AddHediff(HediffDefOf.LifeStages_Testes, BodyCache.Groin(pawn));
+        }
+
         public static float isPostPubescence(HediffSet diffSet)
         {
             var heDiffs = diffSet.hediffs.Where(x => x.def == HediffDefOf.LifeStages_Youth);
@@ -74,52 +92,62 @@ namespace HumanlikeLifeStages
             return !heDiffs.Any() ? 1f : 0f;
         }
 
-        public static float getFactorFertility(HediffSet diffSet)
+        public static float getFactorFertility(this RacePubertySetting that, HediffSet diffSet)
         {
             //look for wombs
-            var heDiffs = RelaventHeDiffs(diffSet);
+            var heDiffs = that.RelaventHeDiffs(diffSet);
 
             if (!heDiffs.Any()) return 0f;
 
             return 1f;
         }
 
-        public static IEnumerable<Hediff> RelaventHeDiffs(HediffSet diffSet)
+        public static IEnumerable<Hediff> RelaventHeDiffs(this RacePubertySetting that, HediffSet diffSet)
         {
-            var heDiffs = diffSet.hediffs.Where(hasBioOrgan);
-
-            if (!heDiffs.Any())
-            {
-                heDiffs = diffSet.pawn.health.hediffSet.hediffs.Where(x =>
-                    hasBioOrgan(x) || x.def?.defName?.Contains("Womb") == true);
-            }
+            var heDiffs = diffSet.pawn.health.hediffSet.hediffs.Where(x =>
+                    that.hasBioOrgan(x) || x.def?.defName?.Contains("Womb") == true);
 
             return heDiffs;
         }
 
-        public static bool hasBioOrgan(Hediff x)
+        public static bool hasBioOrgan(this RacePubertySetting that, Hediff x)
         {
-            return hasWomb(x) || hasTestes(x);
+            return that.hasWomb(x) || that.hasTestes(x);
         }
 
-        public static bool hasWomb(Hediff x)
+        public static bool hasWomb(this RacePubertySetting that, Hediff x)
         {
-            return x.def == HediffDefOf.LifeStages_Womb;
+            return that.Organs(BodyPartsByRace.Female).First(y => y == x.def) != null;
+
         }
 
-
-        public static bool hasTestes(Hediff x)
+        public static bool hasTestes(this RacePubertySetting that, Hediff x)
         {
-            return x.def == HediffDefOf.LifeStages_Testes;
+            return that.Organs(BodyPartsByRace.Male).First(y => y == x.def) != null;
         }
 
-        public static bool AnyTestes(Pawn pawn)
+        public static bool AnyTestes(this RacePubertySetting that, Pawn pawn)
         {
-            return pawn.health.hediffSet.hediffs.Any(hasTestes);
+            return pawn.health.hediffSet.hediffs.Any(that.hasTestes);
         }
-        public static bool AnyWomb(Pawn pawn)
+        public static bool AnyWomb(this RacePubertySetting that, Pawn pawn)
         {
-            return pawn.health.hediffSet.hediffs.Any(hasWomb);
+            return pawn.health.hediffSet.hediffs.Any(that.hasWomb);
         }
+        
+        public static List<HediffDef> Organs(this RacePubertySetting that, int? genderRoleIndex = null, int? where = null)
+        {
+            return that.list.Where(
+                x => genderRoleIndex == null || genderRoleIndex == x.genderRoleIndex 
+                && where == null || where == x.where).Select(x=>x.Which()).ToList();
+        }
+        
+        public static List<HediffDef> Secondary(this RacePubertySetting that, int? genderRoleIndex = null, int? where = null)
+        {
+            return that.list.Where(x => genderRoleIndex == null || genderRoleIndex == x.secondaryGenderRoleIndex)
+                .Where(x => where == null || where == x.where).Select(x=>x.Which()).ToList();
+        }
+        
+        public static RacePubertySetting RacePubertySetting(this Pawn pawn) => SettingHelper.latest.GetPubertySettingsFor(pawn.def);
     }
 }
