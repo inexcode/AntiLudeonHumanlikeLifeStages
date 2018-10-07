@@ -4,8 +4,7 @@
         <defName>LifeStages_GenericMale</defName>
         <label>unidentifiable intromittent organ</label>
         <description>An intromittent organ is a general term for an external organ of a male organism that is
-            specialized to deliver sperm during copulation.
-        </description>
+            specialized to deliver sperm during copulation.</description>
     </HediffDef>
 
     <HediffDef ParentName="NaturalLifeStagePartBaseFemale">

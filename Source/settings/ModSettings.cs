@@ -79,7 +79,7 @@ namespace HumanlikeLifeStages
             Scribe_Values.Look(ref this.thirdGenderPossessive, "thirdGenderPossessive", "theirs");
             Scribe_Values.Look(ref this.thirdGenderObjective, "thirdGenderObjective", "their");
             
-            Scribe_Collections.Look(ref this.racialSettings, "racialSettings");
+            Scribe_Collections.Look(ref this.racialSettings, "Racial_Settings");
         }
     }
 }

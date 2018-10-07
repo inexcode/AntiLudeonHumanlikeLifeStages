@@ -47,7 +47,7 @@ namespace HumanlikeLifeStages
                 ">"
             );
 
-            var rect = inRect.BottomPart(.85f).ContractedBy(4f);
+            var rect = inRect.BottomPart(.92f).ContractedBy(4f);
             
             
             that.RenderOptions(currentDef, rect, previous || next);
@@ -189,10 +189,19 @@ namespace HumanlikeLifeStages
             var listCount = settings.list.Count;
             var splits = Split(rect, listCount+1).ToArray();
 
-            Widgets.CheckboxLabeled(new Rect(rect.x,rect.y,rect.height/5f, rect.height/10f),"Has Prepubescence stage?",ref settings.pubertySetting.value );
+            var topPart = new Rect(rect.x, rect.y, rect.width, rect.height / 10f);
+
+            var labelArea = SplitX(topPart, 7).ToArray();
+
+            Widgets.Label(labelArea[0],
+                "Reproductive");
+
             
-            
-            rect = rect.BottomPart(.9f);
+            Widgets.Label(labelArea[1],
+                "Secondary");
+
+            Widgets.CheckboxLabeled(labelArea[labelArea.Length-2],"Born Adult?",ref settings.pubertySetting.value );
+            rect = rect.BottomPart(.85f);
 
             for (int i = 0; i < listCount; i++)
             {
@@ -203,7 +212,7 @@ namespace HumanlikeLifeStages
             }
         }
 
-        public static IEnumerable<Rect> Split(Rect rect, int count)
+        public static IEnumerable<Rect> Split(this Rect rect, int count)
         {
             float offset = rect.height / count;
             for (int i = 0; i <= count; i++)
@@ -211,6 +220,13 @@ namespace HumanlikeLifeStages
                 yield return new Rect(rect.x, rect.y + (i * offset), rect.width, offset);
             }
         }
-
+        public static IEnumerable<Rect> SplitX(this Rect rect, int count)
+        {
+            float offset = rect.width / count;
+            for (int i = 0; i <= count; i++)
+            {
+                yield return new Rect(rect.x + (i * offset), rect.y, offset, rect.height);
+            }
+        }
     }
 }

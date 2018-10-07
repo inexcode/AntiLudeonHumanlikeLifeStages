@@ -133,7 +133,7 @@ namespace HumanlikeLifeStages
                 list = humanDefaults();
             }
 
-            return new RacePubertySetting(){appliedTo = currentDef.defName, list = list};
+            return new RacePubertySetting(){appliedTo = currentDef.defName, list = list, pubertySetting = hasPubertyAtBirth};
         }
 
         public static readonly int Off = 0, Male = 1, Female = 2, Other = 3, All = 4;
