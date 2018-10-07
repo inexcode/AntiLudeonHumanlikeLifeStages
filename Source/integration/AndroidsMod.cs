@@ -20,11 +20,6 @@ namespace HumanlikeLifeStages
             return def == ChjAndroid;
         }
 
-        public static bool isRelavent(Pawn pawn)
-        {
-            return isRelaventDef(pawn.def);
-        }
-
         public static bool isRelaventDef(ThingDef currentDef)
         {
             return isAndroid(currentDef) || isDroid(currentDef);

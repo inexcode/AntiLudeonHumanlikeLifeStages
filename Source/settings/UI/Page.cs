@@ -12,12 +12,7 @@ namespace HumanlikeLifeStages
         aliens
     }
 
-    public static class PubertySettingHelper
-    {
-        public static HediffDef Which(this PubertySetting that) =>
-            DefDatabase<HediffDef>.GetNamedSilentFail(that.which);
-        
-    }
+    
     public static class ModSettingRenderer
     {
         public static void aliens(this SettingsUIMod that, Rect inRect)
@@ -61,9 +56,10 @@ namespace HumanlikeLifeStages
             {
                 SettingsUIMod.current++;
             }
-            
-            SettingsUIMod.current %= SettingsUIMod.def.Count;
-            SettingsUIMod.current = Math.Abs(SettingsUIMod.current);
+
+            var defCount = SettingsUIMod.def.Count;
+            SettingsUIMod.current += defCount;
+            SettingsUIMod.current %= defCount;
 
             if (clicked)
             {
@@ -176,7 +172,7 @@ namespace HumanlikeLifeStages
         
         private static void RenderOptions(this SettingsUIMod that, ThingDef currentDef, Rect rect, bool validate)
         {
-            if (that.Settings == null)
+            if (that?.Settings == null)
             {
                 throw new Exception("Why doesn't settings exist yet ?");
             }
@@ -184,29 +180,44 @@ namespace HumanlikeLifeStages
             
             if (settings?.list == null)
             {
-                throw new Exception("["+currentDef.defName+"] Race has no special settings? Alice said we should always get things here. Can you send her this?");
+                throw new Exception("["+(currentDef?.defName)+"] Race has no special settings? Alice said we should always get things here. Can you send her this?");
             }
             var listCount = settings.list.Count;
             var splits = Split(rect, listCount+1).ToArray();
 
+            RenderTopPart(rect, settings);
+
+            RenderOptions(listCount, settings, splits);
+        }
+
+        private static void RenderTopPart(Rect rect, RacePubertySetting settings)
+        {
             var topPart = new Rect(rect.x, rect.y, rect.width, rect.height / 10f);
 
-            var labelArea = SplitX(topPart, 7).ToArray();
+            var labelArea = SplitX(topPart, 10).ToArray();
 
             Widgets.Label(labelArea[0],
-                "Reproductive");
+                "Organ");
 
-            
+
             Widgets.Label(labelArea[1],
                 "Secondary");
+            
+            Widgets.Label(labelArea[2],
+                "Where");
 
-            Widgets.CheckboxLabeled(labelArea[labelArea.Length-2],"Born Adult?",ref settings.pubertySetting.value );
-            rect = rect.BottomPart(.85f);
+            if (settings.pubertySetting == null)
+                settings.pubertySetting = false;
+            
+            Widgets.CheckboxLabeled(labelArea[labelArea.Length - 2], "Born Adult?", ref settings.pubertySetting.value);
+        }
 
+        private static void RenderOptions(int listCount, RacePubertySetting settings, Rect[] splits)
+        {
             for (int i = 0; i < listCount; i++)
             {
                 var setting = settings.list[i];
-                var myRect = splits[i+1];
+                var myRect = splits[i + 1];
 
                 setting.WidgetDraw(myRect);
             }
