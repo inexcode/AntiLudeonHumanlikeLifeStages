@@ -55,7 +55,7 @@ namespace HumanlikeLifeStages
 
         public bool IsAssigned()
         {
-            return genderRoleIndex != 0;
+            return genderRoleIndex != BodyPartsByRace.Off;
         }
 
         public bool IsAll()
@@ -79,17 +79,17 @@ namespace HumanlikeLifeStages
         
         public bool IsSecondaryAssigned()
         {
-            return genderRoleIndex != 0;
+            return secondaryGenderRoleIndex != 0;
         }
 
         public bool IsSecondaryAll()
         {
-            return genderRoleIndex == BodyPartsByRace.All;
+            return secondaryGenderRoleIndex == BodyPartsByRace.All;
         }
 
         public Gender GetSecondaryGender()
         {
-            switch (genderRoleIndex)
+            switch (secondaryGenderRoleIndex)
             {
                 case 1:
                     return Gender.Male;

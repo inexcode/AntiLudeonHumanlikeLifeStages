@@ -136,6 +136,16 @@ namespace HumanlikeLifeStages
             return new RacePubertySetting(){appliedTo = currentDef.defName, list = list, instantPubertySetting = hasPubertyAtBirth};
         }
 
+        public static int GenderPartId(this Gender gender)
+        {
+            switch (gender)
+            {
+                    case Verse.Gender.Male: return Male;
+                case Verse.Gender.Female: return Female;
+            }
+
+            return Other;
+        }
         public static readonly int Off = 0, Male = 1, Female = 2, Other = 3, All = 4;
         public static readonly int  Groin = 1, Internal = 2, Chest = 3, Skin = 4;
 

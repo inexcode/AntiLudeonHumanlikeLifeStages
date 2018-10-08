@@ -10,54 +10,49 @@ namespace HumanlikeLifeStages
     {
         public static void DecideTooAddHair(this RacePubertySetting pubertySettings, Pawn pawn)
         {
-            var forHair = pubertySettings.chanceForHair(pawn);
-            if (!pubertySettings.HasPubicHair(pawn, BodyCache.Groin(pawn)))
+            var forHair = pubertySettings.ChanceForHair(pawn);
+            if (Rand.Value < forHair*2)
             {
-                if (Rand.Value < forHair * 5)
+                Log.Message("Hair please");
+                pubertySettings.AddHair(pawn);
+            }
+        }
+
+        private static float ChanceForHair(this RacePubertySetting pubertySettings, Pawn pawn)
+        {
+            return pubertySettings.AnyTestes(pawn)
+                ? SettingHelper.latest.maleHairGrowthRate
+                : SettingHelper.latest.otherHairGrowthRate;
+        }
+
+        public static void AddHair(this RacePubertySetting pubertySettings, Pawn pawn)
+        {
+            IEnumerable<PubertySetting> settings = pubertySettings.list.Where(x => x.IsSecondaryAssigned()
+                && (x.IsSecondaryAll() || x.GetSecondaryGender() == pawn.gender));
+            //HediffDef bodyHair = PubertyHelper.First(hediffDefs);
+            foreach (PubertySetting bodyHair in settings)
+            {
+                BodyPartRecord whereHair = pawn.Where(bodyHair.Where());
+                
+                var which = bodyHair.Which();
+                
+                Log.Message("Adding hair to " + whereHair + " of type " + which);
+                
+                var hediff = PawnHelper.GetHediff(pawn, which, whereHair, false);
+                if (hediff == null)
                 {
-                    pubertySettings.AddPubicHair(pawn);
+                    hediff = pawn.health.AddHediff(which, whereHair);
+                    hediff.Severity = 0.05f;
                 }
-            } else if (Rand.Value < forHair) 
-            {
-                pubertySettings.AddHair(pawn, whatPart(pawn));
+                else
+                {
+                    hediff.Severity = Math.Min(hediff.Severity + 0.1f, 1f);
+                }
             }
         }
 
 
-        private static void AddPubicHair(this RacePubertySetting pubertySettings, Pawn pawn)
-        {
-            BodyPartRecord groin = BodyCache.Groin(pawn);
-
-            //always get public hair first
-            var diff = pawn.health.AddHediff(HediffDefOf.LifeStages_PubicHair, groin);
-            diff.Severity = .1f;
-        }
-
-
-        private static float chanceForHair(this RacePubertySetting pubertySettings, Pawn pawn)
-        {
-            return pubertySettings.AnyTestes(pawn) ? SettingHelper.latest.maleHairGrowthRate : SettingHelper.latest.otherHairGrowthRate;
-        }
-
-        public static void AddHair(this RacePubertySetting pubertySettings, Pawn pawn, BodyPartRecord whereHair)
-        {
-            if (whereHair == null) return;
-
-
-            var hediff = PawnHelper.GetHediff(pawn, HediffDefOf.LifeStages_BodyHair, whereHair, false);
-            if (hediff == null)
-            {
-                hediff = pawn.health.AddHediff(HediffDefOf.LifeStages_BodyHair, whereHair);
-                hediff.Severity = 0.05f;
-            }
-            else
-            {
-                hediff.Severity = Math.Min(hediff.Severity + 0.1f, 1f);
-            }
-        }
-
-
-        private static BodyPartRecord whatPart(Pawn pawn)
+        public static BodyPartRecord WhatPart(Pawn pawn)
         {
             var validParts = BodyCache.ValidFurryParts(pawn);
             return validParts.OrderByDescending(x => Rand.Value).First();
@@ -72,12 +67,6 @@ namespace HumanlikeLifeStages
             yield return RimWorld.BodyPartDefOf.Leg;
             yield return RimWorld.BodyPartDefOf.Jaw;
             yield return RimWorld.BodyPartDefOf.Neck;
-        }
-
-        private static bool HasPubicHair(this RacePubertySetting pubertySettings, Pawn pawn, BodyPartRecord bodyPartRecord = null)
-        {
-            var set = pubertySettings.Secondary(BodyPartsByRace.Groin);
-            return pawn.health.hediffSet.HasHediff(HediffDefOf.LifeStages_PubicHair, bodyPartRecord);
         }
     }
 }
