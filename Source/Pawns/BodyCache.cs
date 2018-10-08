@@ -22,7 +22,7 @@ namespace HumanlikeLifeStages
 
         private static IEnumerable<BodyPartRecord> cacheValueRace_BodyPartRecords(Pawn pawn)
         {
-            IEnumerable<BodyPartDef> hairyParts = BodyHairHelper.whatCanGetHairy(pawn);
+            IEnumerable<BodyPartDef> hairyParts = BodyHairHelper.WhatSkinCanGetHairy(pawn);
             IEnumerable<BodyPartRecord> validParts = pawn.RaceProps.body.AllParts.Where(x => hairyParts.Contains(x.def));
             return validParts;
         }

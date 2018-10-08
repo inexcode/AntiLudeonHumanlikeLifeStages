@@ -9,9 +9,12 @@ namespace HumanlikeLifeStages
         
         public static Gender WhatGender(Pawn pawn)
         {
+
+            RacePubertySetting pubertySettings = pawn.RacePubertySetting();
+
             var intersex = pawn.health.hediffSet.GetFirstHediffOfDef(HediffDefOf.LifeStages_Infertile_BirthDefect) !=
                            null ||
-                           PubertyHelper.AnyTestes(pawn) && PubertyHelper.AnyWomb(pawn);
+                           pubertySettings.AnyTestes(pawn) && pubertySettings.AnyWomb(pawn);
 
             if (intersex) return Gender.None;
 

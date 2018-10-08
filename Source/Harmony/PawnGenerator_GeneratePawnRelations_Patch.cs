@@ -26,11 +26,10 @@ namespace HumanlikeLifeStages
             
             if(pawn.health.hediffSet.HasHediff(HediffDefOf.LifeStages_Adult)) return;
 
+            var pubertySettings = pawn.RacePubertySetting();
             ChestManager.intialChest(pawn);
             
-            SettingHelper.latest.update();
-
-            if (AndroidsMod.isRelavent(pawn))
+            if (pubertySettings.instantPubertySetting)
             {
                 DoPuberty(pawn, maturityPart);
                 return;

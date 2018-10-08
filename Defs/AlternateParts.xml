@@ -3,23 +3,20 @@
     <HediffDef ParentName="NaturalLifeStagePartBaseMale">
         <defName>LifeStages_GenericMale</defName>
         <label>unidentifiable intromittent organ</label>
+        <description>An intromittent organ is a general term for an external organ of a male organism that is
+            specialized to deliver sperm during copulation.</description>
     </HediffDef>
 
     <HediffDef ParentName="NaturalLifeStagePartBaseFemale">
         <defName>LifeStages_GenericFemale</defName>
         <label>unidentifiable ovarian organ</label>
+        <description>The ova producing organ</description>
     </HediffDef>
 
     
     <!-- Animal Kingdom -->
     
     <!-- Bugs and Sea Bugs (Shrimp)-->
-
-
-    <HediffDef ParentName="NaturalLifeStagePartBaseHair">
-        <defName>LifeStages_Scales</defName>
-        <label>Scales</label>
-    </HediffDef>
 
     <HediffDef ParentName="NaturalLifeStagePartBaseFemale">
         <defName>LifeStages_IncectFemale</defName>
@@ -39,6 +36,7 @@
     <HediffDef ParentName="NaturalLifeStagePartBaseMale">
         <defName>LifeStages_ShrimpMale</defName>
         <label>Pleopods</label>
+        <description>Flipper-like intromittent organ found in shrimp to deposit or collect sperm</description>
     </HediffDef>
 
     <!-- Unevolved -->
@@ -46,6 +44,9 @@
     <HediffDef ParentName="NaturalLifeStagePartBase">
         <defName>LifeStages_Simple</defName>
         <label>Cloaca</label>
+        <description>a common cavity at the end of the digestive tract for the release of both excretory and genital
+            products in vertebrates (except most mammals) and certain invertebrates. This organ is found on all genders
+            of a species and mating is performed by the aptly, colloquial named "Cloaca Kiss."</description>
     </HediffDef>
 
     <!-- Animal hermaphrodite ie slug -->
@@ -53,6 +54,7 @@
     <HediffDef ParentName="NaturalLifeStagePartBase">
         <defName>LifeStages_Ovotestis</defName>
         <label>Ovotestis</label>
+        <description>an organ producing both ova and spermatozoa, often found in gastropod mollusks.</description>
     </HediffDef>
 
     
@@ -72,13 +74,43 @@
         <defName>LifeStages_Bark</defName>
         <label>Bark</label>
     </HediffDef>
-    
+
+
+    <HediffDef ParentName="NaturalLifeStagePartBaseHair">
+        <defName>LifeStages_Plumage</defName>
+        <label>Plumage</label>
+    </HediffDef>
+
+
+    <HediffDef ParentName="NaturalLifeStagePartBaseHair">
+        <defName>LifeStages_Bark</defName>
+        <label>Bark</label>
+    </HediffDef>
+
+
+    <HediffDef ParentName="NaturalLifeStagePartBaseHair">
+        <defName>LifeStages_Scales</defName>
+        <label>Scales</label>
+    </HediffDef>
+
+
+    <HediffDef ParentName="NaturalLifeStagePartBaseHair">
+        <defName>LifeStages_Goo</defName>
+        <label>Goo</label>
+    </HediffDef>
+
+
+    <HediffDef ParentName="NaturalLifeStagePartBaseHair">
+        <defName>LifeStages_SporingBody</defName>
+        <label>Sporing Body</label>
+    </HediffDef>
     
     <!-- Plants ASexual -->
 
     <HediffDef ParentName="NaturalLifeStagePartBase">
         <defName>LifeStages_SimplePlant</defName>
         <label>Sporophyte</label>
+        <description>Plant hermaphrodite sexual organ</description>
     </HediffDef>
     
     <!-- Plants Sexual -->
@@ -88,11 +120,15 @@
     <HediffDef ParentName="NaturalLifeStagePartBaseFemale">
         <defName>LifeStages_PlantFemale</defName>
         <label>Gynoecium</label>
+        <description>collective term for the parts of a flower that produce ovules and ultimately develop into the fruit
+            and seeds.</description>
     </HediffDef>
 
     <HediffDef ParentName="NaturalLifeStagePartBaseMale">
         <defName>LifeStages_PlantMale</defName>
         <label>Stamen</label>
+        <description>the male fertilizing organ of a flower, typically consisting of a pollen-containing anther and a
+            filament.</description>
     </HediffDef>
     
     
