@@ -28,7 +28,7 @@ namespace HumanlikeLifeStages
         public static void AddHair(this RacePubertySetting pubertySettings, Pawn pawn)
         {
             IEnumerable<PubertySetting> settings = pubertySettings.list.Where(x => x.IsSecondaryAssigned()
-                && (x.IsSecondaryAll() || x.GetSecondaryGender() == pawn.gender));
+                && (x.IsSecondaryAll() || x.GetSecondaryGender() == pawn.gender) && x.Where()!=BodyPartDefOf.Chest);
             //HediffDef bodyHair = PubertyHelper.First(hediffDefs);
             foreach (PubertySetting bodyHair in settings)
             {
