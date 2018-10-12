@@ -35,7 +35,7 @@ namespace HumanlikeLifeStages
                 return;
             }
             
-            var yearsOld = pawn.ageTracker.AgeBiologicalYears;
+            var yearsOld = pawn.ageTracker.AgeBiologicalYearsFloat;
 
             if (yearsOld < SettingHelper.latest.PubertyOnset)
             {
