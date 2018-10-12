@@ -44,6 +44,7 @@
     <Compile Include="Harmony\JobDriver_Lovin_Patch.cs" />
     <Compile Include="Harmony\ModRoot.cs" />
     <Compile Include="Harmony\PawnGenerator_GeneratePawnRelations_Patch.cs" />
+    <Compile Include="Harmony\RenderingOption\RenderingWithoutChildrenMod.cs" />
     <Compile Include="HumanlikeLifeStages.cs" />
     <Compile Include="integration\AndroidsMod.cs" />
     <Compile Include="integration\BodyPartsByRace.cs" />
