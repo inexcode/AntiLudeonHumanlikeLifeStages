@@ -25,9 +25,8 @@ namespace HumanlikeLifeStages
 
             float scale = __instance?.pawn?.ageTracker?.CurLifeStage?.bodySizeFactor ?? 1f;
 
-            if (Math.Abs(scale - 1f) < 1E-6) return;
-            
-            scale *= __instance.pawn.RaceProps.baseBodySize * 1.5f;
+            float racePropsBaseBodySize = (float)Math.Abs(Math.Log(Math.Sqrt(__instance.pawn.RaceProps.baseBodySize)+1.22474487139, 2));
+            scale *= racePropsBaseBodySize * 1.5f;
             
             var vector2 = new Vector2(scale, scale);
             //Not sure iff ill need to do this .Scale(new Vector2(1.5f,1.5f));
