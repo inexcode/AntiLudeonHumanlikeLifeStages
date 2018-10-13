@@ -34,7 +34,7 @@ namespace HumanlikeLifeStages
                 }
 
                 //clear cache
-                body.ResolveReferences();
+                //body.ResolveReferences();
             }
             
             foreach (var humanoidRace in humanoidRaces)

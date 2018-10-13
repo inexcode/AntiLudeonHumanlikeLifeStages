@@ -21,6 +21,7 @@ namespace HumanlikeLifeStages
                 || !__instance.pawn.RaceProps.Humanlike
                 || __instance.nakedGraphic == null
                 || !SettingHelper.latest.alicesRenderingMode
+                || ChildrenCrossMod.isChildrenModOn()
                 ) return;
 
             float scale = __instance?.pawn?.ageTracker?.CurLifeStage?.bodySizeFactor ?? 1f;
@@ -62,7 +63,7 @@ namespace HumanlikeLifeStages
     {
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-            if (!SettingHelper.latest.alicesRenderingMode) return instructions;
+            if (!SettingHelper.latest.alicesRenderingMode || ChildrenCrossMod.isChildrenModOn() ) return instructions;
             FieldInfo  humanlikeBodyInfo = AccessTools.Field(type: typeof(MeshPool), name: nameof(MeshPool.humanlikeBodySet));
             
             int startIndex = -1, endIndex = -1;

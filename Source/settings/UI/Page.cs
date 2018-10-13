@@ -135,11 +135,17 @@ namespace HumanlikeLifeStages
             that.ThirdGendered(inRect);
 
             var leftHalf = inRect.BottomHalf().BottomHalf().BottomHalf().BottomHalf().LeftHalf();
-            
-            Widgets.CheckboxLabeled(leftHalf.TopHalf().ContractedBy(2f), "Alternate Renderer (unsafe)", ref that.Settings.alicesRenderingMode);
-            
+
+            if (!ChildrenCrossMod.isChildrenModOn())
+            {
+                Widgets.CheckboxLabeled(leftHalf.TopHalf().ContractedBy(2f), "Child-Size Renderer (unsafe)",
+                    ref that.Settings.alicesRenderingMode);
+
+                leftHalf = leftHalf.BottomHalf();
+            }
+
             var clicked = Widgets.ButtonText(
-                leftHalf.BottomHalf(),
+                leftHalf,
                 "Aliens Configurations"
             );
 
