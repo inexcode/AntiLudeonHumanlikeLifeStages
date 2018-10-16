@@ -30,7 +30,9 @@ namespace HumanlikeLifeStages
                 {
                     // insert body part
                     body.corePart.parts.Add(bodyPartRecord);
+                    #if DEBUG
                     Log.Message("Added body part [" + bodyPartRecord.def.defName + "] to [" + body.defName + "]");
+                    #endif
                 }
 
                 //clear cache

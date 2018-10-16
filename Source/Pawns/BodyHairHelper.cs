@@ -34,9 +34,9 @@ namespace HumanlikeLifeStages
                 BodyPartRecord whereHair = pawn.Where(bodyHair.Where());
                 
                 var which = bodyHair.Which();
-                
+#if DEBUG        
                 Log.Message("Adding hair to " + pawn?.Name + " of " + pawn?.Faction?.Name + " AT " + whereHair + " of type " + which);
-                
+#endif       
                 var hediff = PawnHelper.GetHediff(pawn, which, whereHair, false);
                 if (hediff == null)
                 {
