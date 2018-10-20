@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <RecipeDef ParentName="SurgeryFlesh">
+        <defName>PlasticSurgery</defName>
+        <label>repair damaged part</label>
+        <description>Its crazy magic.</description>
+        <workerClass>Recipe_InstallNaturalBodyPart</workerClass>
+        <jobString>performing plastic surgery.</jobString>
+        <workAmount>13700</workAmount>
+        <deathOnFailedSurgeryChance>0.01</deathOnFailedSurgeryChance>
+        <skillRequirements>
+            <Medicine>8</Medicine>
+            <Crafting>8</Crafting>
+        </skillRequirements>
+        <ingredients>
+            <li>
+                <filter>
+                    <categories>
+                        <li>Medicine</li>
+                    </categories>
+                </filter>
+                <count>3</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Plasteel</li>
+                    </thingDefs>
+                </filter>
+                <count>1</count>
+            </li>
+        </ingredients>
+        <fixedIngredientFilter>
+            <categories>
+                <li>Medicine</li>
+            </categories>
+            <thingDefs>
+                <li>Plasteel</li>
+            </thingDefs>
+        </fixedIngredientFilter>
+        <appliedOnFixedBodyParts>
+            <li>Groin</li>
+            <li>LifeStages_ReproductiveOrgans</li>
+            <li>Chest</li>
+            <li>Maturity</li><!-- just in case, you know or i decide to make a disease which makes you stay youthful.-->
+        </appliedOnFixedBodyParts>
+    </RecipeDef>
+
+    <RecipeDef ParentName="SurgeryFlesh">
+        <defName>SecondPuberty</defName>
+        <label>second puberty</label>
+        <description>quote on quote, miracle operation designed to force your body through puberty again. Typically used after the bionic plastic surgery is used to restore lost parts, or to get really really hair and have huge pecs. Im not here to judge</description>
+        <workerClass>Recipe_RemoveHediff</workerClass>
+        <jobString>Excising carcinoma.</jobString>
+        <workAmount>4500</workAmount>
+        <removesHediff>LifeStages_Adult</removesHediff>
+        <successfullyRemovedHediffMessage>{0} has successfully excised {1}'s puberty. {1} will now begin to regrow their reproductive organs and grow more hair. So much hair.</successfullyRemovedHediffMessage>
+        <deathOnFailedSurgeryChance>0.15</deathOnFailedSurgeryChance>
+        <skillRequirements>
+            <Medicine>10</Medicine>
+        </skillRequirements>
+        <ingredients>
+            <li>
+                <filter>
+                    <categories>
+                        <li>Medicine</li>
+                    </categories>
+                </filter>
+                <count>6</count>
+            </li>
+        </ingredients>
+        <fixedIngredientFilter>
+            <categories>
+                <li>Medicine</li>
+            </categories>
+            <disallowedThingDefs>
+                <li>MedicineHerbal</li>
+            </disallowedThingDefs>
+        </fixedIngredientFilter>
+    </RecipeDef>
+
+    <RecipeDef ParentName="SurgeryFlesh">
+        <defName>ShaveMeBaby</defName>
+        <label>fine shave</label>
+        <description>Shave off that hair please, its obscene!</description>
+        <workerClass>Recipe_RemoveHediff</workerClass>
+        <jobString>Excising hair.</jobString>
+        <workAmount>450</workAmount>
+        <removesHediff>LifeStages_BodyHair</removesHediff>
+        <successfullyRemovedHediffMessage>{0} has successfully shaved {1}'s hair. {1} is smooth as a baby.</successfullyRemovedHediffMessage>
+        <deathOnFailedSurgeryChance>0</deathOnFailedSurgeryChance>
+        <ingredients>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Steel</li>
+                    </thingDefs>
+                </filter>
+                <count>1</count>
+            </li>
+        </ingredients>
+        <fixedIngredientFilter>
+            <thingDefs>
+                <li>Steel</li>
+            </thingDefs>
+        </fixedIngredientFilter>
+    </RecipeDef>
+
+    <RecipeDef ParentName="SurgeryFlesh">
+        <defName>WaxMeBaby</defName>
+        <label>fine waxing</label>
+        <description>Wax off that hair please, its obscene!</description>
+        <workerClass>Recipe_RemoveHediff</workerClass>
+        <jobString>Waxing hair.</jobString>
+        <workAmount>450</workAmount>
+        <removesHediff>LifeStages_PubicHair</removesHediff>
+        <successfullyRemovedHediffMessage>{0} has successfully shaved {1}'s pubic hair. {1} is smooth as a baby down there.</successfullyRemovedHediffMessage>
+        <deathOnFailedSurgeryChance>0</deathOnFailedSurgeryChance>
+        <ingredients>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Steel</li>
+                    </thingDefs>
+                </filter>
+                <count>1</count>
+            </li>
+        </ingredients>
+        <fixedIngredientFilter>
+            <thingDefs>
+                <li>Steel</li>
+            </thingDefs>
+        </fixedIngredientFilter>
+    </RecipeDef>
+</Defs>
