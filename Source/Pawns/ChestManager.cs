@@ -66,7 +66,7 @@ namespace HumanlikeLifeStages
             }
             else
             {
-                hediff.Severity = Math.Min(hediff.Severity + 0.2f*Rand.Value, 1f);
+                hediff.Severity = Math.Min(hediff.Severity + 0.1f*Rand.Value, 1f);
             }
 
             IEnumerable<Hediff> enumerable = pawn.health.hediffSet.hediffs.Where(x =>

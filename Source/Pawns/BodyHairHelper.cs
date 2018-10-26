@@ -13,7 +13,6 @@ namespace HumanlikeLifeStages
             var forHair = pubertySettings.ChanceForHair(pawn);
             if (Rand.Value < forHair*2)
             {
-                Log.Message("Hair please");
                 pubertySettings.AddHair(pawn);
             }
         }
@@ -28,16 +27,16 @@ namespace HumanlikeLifeStages
         public static void AddHair(this RacePubertySetting pubertySettings, Pawn pawn)
         {
             IEnumerable<PubertySetting> settings = pubertySettings.list.Where(x => x.IsSecondaryAssigned()
-                && (x.IsSecondaryAll() || x.GetSecondaryGender() == pawn.gender));
+                && (x.IsSecondaryAll() || x.GetSecondaryGender() == pawn.gender) && x.Where()!=BodyPartDefOf.Chest);
             //HediffDef bodyHair = PubertyHelper.First(hediffDefs);
             foreach (PubertySetting bodyHair in settings)
             {
                 BodyPartRecord whereHair = pawn.Where(bodyHair.Where());
                 
                 var which = bodyHair.Which();
-                
-                Log.Message("Adding hair to " + whereHair + " of type " + which);
-                
+#if DEBUG        
+                Log.Message("Adding hair to " + pawn?.Name + " of " + pawn?.Faction?.Name + " AT " + whereHair + " of type " + which);
+#endif       
                 var hediff = PawnHelper.GetHediff(pawn, which, whereHair, false);
                 if (hediff == null)
                 {
@@ -46,7 +45,7 @@ namespace HumanlikeLifeStages
                 }
                 else
                 {
-                    hediff.Severity = Math.Min(hediff.Severity + 0.1f, 1f);
+                    hediff.Severity = Math.Min(hediff.Severity + 0.05f, 1f);
                 }
             }
         }

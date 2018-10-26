@@ -60,6 +60,8 @@ namespace HumanlikeLifeStages
         public String thirdGenderProNoun = "they";
         public String thirdGenderPossessive = "theirs";
         public String thirdGenderObjective = "them";
+        
+        public bool alicesRenderingMode;
 
         public override void ExposeData()
         {
@@ -78,6 +80,8 @@ namespace HumanlikeLifeStages
             Scribe_Values.Look(ref this.thirdGenderProNoun, "thirdGenderProNoun", "they");
             Scribe_Values.Look(ref this.thirdGenderPossessive, "thirdGenderPossessive", "theirs");
             Scribe_Values.Look(ref this.thirdGenderObjective, "thirdGenderObjective", "their");
+            
+            Scribe_Values.Look(ref this.alicesRenderingMode, "alicesRenderingMode");
             
             Scribe_Collections.Look(ref this.racialSettings, "Racial_Settings");
         }

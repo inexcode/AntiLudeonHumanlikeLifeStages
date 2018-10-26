@@ -44,6 +44,7 @@
     <Compile Include="Harmony\JobDriver_Lovin_Patch.cs" />
     <Compile Include="Harmony\ModRoot.cs" />
     <Compile Include="Harmony\PawnGenerator_GeneratePawnRelations_Patch.cs" />
+    <Compile Include="Harmony\RenderingOption\RenderingWithoutChildrenMod.cs" />
     <Compile Include="HumanlikeLifeStages.cs" />
     <Compile Include="integration\AndroidsMod.cs" />
     <Compile Include="integration\BodyPartsByRace.cs" />
@@ -73,7 +74,7 @@
     <Reference Include="0Harmony, Version=1.2.0.1, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\Assemblies\0Harmony.dll</HintPath>
     </Reference>
-    <Reference Include="Assembly-CSharp, Version=0.19.6814.14609, Culture=neutral, PublicKeyToken=null">
+    <Reference Include="Assembly-CSharp, Version=1.0.6864.30166, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
@@ -90,11 +91,6 @@
       <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="..\Patches">
-      <Link>Patches</Link>
-    </Folder>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
