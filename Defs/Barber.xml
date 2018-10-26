@@ -104,6 +104,7 @@
                 <li>Steel</li>
             </thingDefs>
         </fixedIngredientFilter>
+        <surgerySuccessChanceFactor>40</surgerySuccessChanceFactor>
     </RecipeDef>
 
     <RecipeDef ParentName="SurgeryFlesh">
@@ -131,5 +132,6 @@
                 <li>Steel</li>
             </thingDefs>
         </fixedIngredientFilter>
+        <surgerySuccessChanceFactor>40</surgerySuccessChanceFactor>
     </RecipeDef>
 </Defs>
