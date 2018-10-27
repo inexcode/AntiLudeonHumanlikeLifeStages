@@ -18,6 +18,11 @@ namespace HumanlikeLifeStages
         {
             RecipeDef srs = DefDatabase<RecipeDef>.GetNamed("HumanlikeLifeStages_SRS");
             RecipeDef nullo = DefDatabase<RecipeDef>.GetNamed("HumanlikeLifeStages_Neuter");
+
+            RecipeDef WaxMeBaby = DefDatabase<RecipeDef>.GetNamed("WaxMeBaby");
+            RecipeDef ShaveMeBaby = DefDatabase<RecipeDef>.GetNamed("ShaveMeBaby");
+            RecipeDef SecondPuberty = DefDatabase<RecipeDef>.GetNamed("SecondPuberty");
+            RecipeDef PlasticSurgery = DefDatabase<RecipeDef>.GetNamed("PlasticSurgery");
             
             var humanoidRaces = HumanoidRaces();
 
@@ -30,7 +35,7 @@ namespace HumanlikeLifeStages
                 {
                     // insert body part
                     body.corePart.parts.Add(bodyPartRecord);
-                    #if DEBUG
+#if DEBUG
                     Log.Message("Added body part [" + bodyPartRecord.def.defName + "] to [" + body.defName + "]");
                     #endif
                 }
@@ -39,15 +44,19 @@ namespace HumanlikeLifeStages
                 body.AllParts.Clear();
                 body.ResolveReferences();
             }
-            
+
             foreach (var humanoidRace in humanoidRaces)
             {
-
                 humanoidRace.recipes.Add(srs);
                 humanoidRace.recipes.Add(nullo);
+                humanoidRace.recipes.Add(WaxMeBaby);
+                humanoidRace.recipes.Add(ShaveMeBaby);
+                humanoidRace.recipes.Add(SecondPuberty);
+                humanoidRace.recipes.Add(PlasticSurgery);
+                
             }
-            
-            
+
+
             SettingHelper.latest.Update();
         }
 
