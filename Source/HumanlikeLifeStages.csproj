@@ -44,9 +44,10 @@
     <Compile Include="Harmony\JobDriver_Lovin_Patch.cs" />
     <Compile Include="Harmony\ModRoot.cs" />
     <Compile Include="Harmony\PawnGenerator_GeneratePawnRelations_Patch.cs" />
+    <Compile Include="Harmony\RenderingOption\RenderingWithoutChildrenMod.cs" />
     <Compile Include="HumanlikeLifeStages.cs" />
     <Compile Include="integration\AndroidsMod.cs" />
-      <Compile Include="integration\BodyPartsByRace.cs"/>
+    <Compile Include="integration\BodyPartsByRace.cs" />
     <Compile Include="integration\ChildrenCrossMod.cs" />
     <Compile Include="mod\HediffPuberty.cs" />
     <Compile Include="mod\HediffYouth.cs" />
@@ -63,15 +64,17 @@
     <Compile Include="Pawns\PubertyHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="settings\ModSettings.cs" />
-      <Compile Include="settings\PubertySetting.cs"/>
+    <Compile Include="settings\PubertySetting.cs" />
     <Compile Include="settings\SettingHelper.cs" />
-      <Compile Include="settings\UI\Page.cs"/>
+    <Compile Include="settings\UI\Page.cs" />
+    <Compile Include="settings\UI\PubertySettingPage.cs" />
+    <Compile Include="settings\Wrappers.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="0Harmony, Version=1.2.0.1, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\Assemblies\0Harmony.dll</HintPath>
     </Reference>
-    <Reference Include="Assembly-CSharp, Version=0.19.6814.14609, Culture=neutral, PublicKeyToken=null">
+    <Reference Include="Assembly-CSharp, Version=1.0.6864.30166, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
@@ -83,7 +86,7 @@
       <HintPath>..\..\BirdsAndBees-master\Assemblies\Fluffy_BirdsAndBees.dll</HintPath>
       <Private>False</Private>
     </Reference>
-      <Reference Include="System"/>
+    <Reference Include="System" />
     <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.dll</HintPath>
       <Private>False</Private>

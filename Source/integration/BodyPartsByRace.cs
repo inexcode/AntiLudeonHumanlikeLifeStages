@@ -47,7 +47,7 @@ namespace HumanlikeLifeStages
 
 
         /***** MOD INTEGRATION ****/
-        public static List<PubertySetting> GetPubertySettingsFor(this ModSettings that, ThingDef currentDef)
+        public static RacePubertySetting GetPubertySettingsFor(this ModSettings that, ThingDef currentDef)
         {
             //that.racialSettings = new List<RacePubertySetting>();
             RacePubertySetting mine = null;
@@ -69,12 +69,12 @@ namespace HumanlikeLifeStages
             
             foreach (RacePubertySetting x in that.racialSettings)
             {
-                if (x.IsThatDef(currentDef)) mine = x;
+                if (x.IsThatDef(currentDef)) {
+                    mine = x;
+                    break;
+                }
             }
             
-            
-            //.First(x => x.IsThatDef(currentDef));
-
             if (mine == null)
             {
                 Log.Message("Building new setting for " + currentDef.defName);
@@ -83,7 +83,7 @@ namespace HumanlikeLifeStages
             }
 
 
-            return mine.list;
+            return mine;
         }
 
         private static bool IsThatDef( this RacePubertySetting x, ThingDef currentDef)
@@ -94,6 +94,7 @@ namespace HumanlikeLifeStages
         private static RacePubertySetting BuildPubertySettings(ThingDef currentDef)
         {
             List<PubertySetting> list;
+            bool hasPubertyAtBirth = false;
             if (currentDef.defName.EqualsIgnoreCase("Alien_Cactoid")
                 || currentDef.defName.EqualsIgnoreCase("Alien_Tree"))
             {
@@ -113,137 +114,225 @@ namespace HumanlikeLifeStages
             )
             {
                 list = elderDefaults();
+            }else if (currentDef.defName.EqualsIgnoreCase("Alien_Argonian")
+            )
+            {
+                list = platapus();
+            }else if (AndroidsMod.isRelaventDef(currentDef))
+            {
+                
+                hasPubertyAtBirth = true;
+
+                if (AndroidsMod.isAndroid(currentDef))
+                {
+                    list = humanDefaults();    
+                }
+                else
+                {
+                    list = boringDefault();
+                }
             }
             else
             {
                 list = humanDefaults();
             }
 
-            return new RacePubertySetting(){appliedTo = currentDef.defName, list = list};
+            return new RacePubertySetting(){appliedTo = currentDef.defName, list = list, instantPubertySetting = hasPubertyAtBirth};
         }
 
+        public static int GenderPartId(this Gender gender)
+        {
+            switch (gender)
+            {
+                    case Verse.Gender.Male: return Male;
+                case Verse.Gender.Female: return Female;
+            }
+
+            return Other;
+        }
         public static readonly int Off = 0, Male = 1, Female = 2, Other = 3, All = 4;
+        public static readonly int  Groin = 1, Internal = 2, Chest = 3, Skin = 4;
 
         public static List<PubertySetting> humanDefaults() => new List<PubertySetting>()
         {
-            new PubertySetting(HediffDefOf.LifeStages_Womb, Female, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Testes, Male, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Pecs, Off, Male),
-            new PubertySetting(HediffDefOf.LifeStages_Breasts, Off, Female),
-            new PubertySetting(HediffDefOf.LifeStages_Ovotestis, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Womb, Female, Off, Internal),
+            new PubertySetting(HediffDefOf.LifeStages_Testes, Male, Off, Groin),
+            new PubertySetting(HediffDefOf.LifeStages_Pecs, Off, Male, Chest),
+            new PubertySetting(HediffDefOf.LifeStages_Breasts, Off, Female, Chest),
+            new PubertySetting(HediffDefOf.LifeStages_Ovotestis, Off, Off, Off),
 
-            new PubertySetting(HediffDefOf.LifeStages_GenericMale, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_GenericFemale, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_IncectFemale, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_IncectFemaleAlt, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_IncectMale, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_ShrimpMale, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Simple, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_SimplePlant, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_PlantMale, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_PlantFemale, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_GenericMale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_GenericFemale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_IncectFemale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_IncectFemaleAlt, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_IncectMale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_ShrimpMale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Simple, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_SimplePlant, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_PlantMale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_PlantFemale, Off, Off, Off),
 
-            new PubertySetting(HediffDefOf.LifeStages_BodyHair, Off, All),
-            new PubertySetting(HediffDefOf.LifeStages_PubicHair, Off, All),
-            new PubertySetting(HediffDefOf.LifeStages_SporingBody, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Goo, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Bark, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Leaves, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_FloweringBody, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Scales, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Plumage, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_BodyHair, Off, All, Skin),
+            new PubertySetting(HediffDefOf.LifeStages_PubicHair, Off, All, Groin),
+            new PubertySetting(HediffDefOf.LifeStages_SporingBody, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Goo, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Bark, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Leaves, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_FloweringBody, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Scales, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Plumage, Off, Off, Off),
         };
 
 
         public static List<PubertySetting> birdDefaults() => new List<PubertySetting>()
         {
-            new PubertySetting(HediffDefOf.LifeStages_Womb, Female, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Testes, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Pecs, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Breasts, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Ovotestis, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Womb, Female, Off, Internal),
+            new PubertySetting(HediffDefOf.LifeStages_Testes, Male, Off, Internal),
+            new PubertySetting(HediffDefOf.LifeStages_Pecs, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Breasts, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Ovotestis, Other, Off, Internal),
 
-            new PubertySetting(HediffDefOf.LifeStages_GenericMale, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_GenericFemale, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_IncectFemale, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_IncectFemaleAlt, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_IncectMale, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_ShrimpMale, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Simple, All, Off),
-            new PubertySetting(HediffDefOf.LifeStages_SimplePlant, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_PlantMale, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_PlantFemale, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_GenericMale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_GenericFemale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_IncectFemale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_IncectFemaleAlt, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_IncectMale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_ShrimpMale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Simple, All, Off, Groin),
+            new PubertySetting(HediffDefOf.LifeStages_SimplePlant, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_PlantMale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_PlantFemale, Off, Off, Off),
 
-            new PubertySetting(HediffDefOf.LifeStages_BodyHair, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_PubicHair, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_SporingBody, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Goo, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Bark, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Leaves, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_FloweringBody, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Scales, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Plumage, Off, All),
+            new PubertySetting(HediffDefOf.LifeStages_BodyHair, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_PubicHair, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_SporingBody, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Goo, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Bark, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Leaves, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_FloweringBody, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Scales, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Plumage, Off, All, Skin),
         };
 
         public static List<PubertySetting> elderDefaults() => new List<PubertySetting>()
         {
-            new PubertySetting(HediffDefOf.LifeStages_Womb, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Testes, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Pecs, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Breasts, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Ovotestis, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Womb, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Testes, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Pecs, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Breasts, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Ovotestis, Off, Off, Off),
 
-            new PubertySetting(HediffDefOf.LifeStages_GenericMale, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_GenericFemale, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_IncectFemale, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_IncectFemaleAlt, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_IncectMale, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_ShrimpMale, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Simple, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_SimplePlant, All, Off),
-            new PubertySetting(HediffDefOf.LifeStages_PlantMale, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_PlantFemale, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_GenericMale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_GenericFemale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_IncectFemale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_IncectFemaleAlt, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_IncectMale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_ShrimpMale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Simple, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_SimplePlant, All, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_PlantMale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_PlantFemale, Off, Off, Off),
 
-            new PubertySetting(HediffDefOf.LifeStages_BodyHair, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_PubicHair, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_SporingBody, All, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Goo, Off, All),
-            new PubertySetting(HediffDefOf.LifeStages_Bark, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Leaves, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_FloweringBody, Off, All),
-            new PubertySetting(HediffDefOf.LifeStages_Scales, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Plumage, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_BodyHair, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_PubicHair, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_SporingBody, All, Off, Skin),
+            new PubertySetting(HediffDefOf.LifeStages_Goo, Off, All, Skin),
+            new PubertySetting(HediffDefOf.LifeStages_Bark, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Leaves, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_FloweringBody, Off, All, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Scales, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Plumage, Off, Off, Off),
         };
 
 
         public static List<PubertySetting> plantDefaults() => new List<PubertySetting>()
         {
-            new PubertySetting(HediffDefOf.LifeStages_Womb, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Testes, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Pecs, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Breasts, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Ovotestis, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Womb, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Testes, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Pecs, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Breasts, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Ovotestis, Off, Off, Off),
 
-            new PubertySetting(HediffDefOf.LifeStages_GenericMale, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_GenericFemale, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_IncectFemale, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_IncectFemaleAlt, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_IncectMale, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_ShrimpMale, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Simple, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_SimplePlant, Other, Off),
-            new PubertySetting(HediffDefOf.LifeStages_PlantMale, Male, Off),
-            new PubertySetting(HediffDefOf.LifeStages_PlantFemale, Female, Off),
+            new PubertySetting(HediffDefOf.LifeStages_GenericMale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_GenericFemale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_IncectFemale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_IncectFemaleAlt, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_IncectMale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_ShrimpMale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Simple, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_SimplePlant, Other, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_PlantMale, Male, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_PlantFemale, Female, Off, Off),
 
-            new PubertySetting(HediffDefOf.LifeStages_BodyHair, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_PubicHair, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_SporingBody, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Goo, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Bark, Off, All),
-            new PubertySetting(HediffDefOf.LifeStages_Leaves, Off, All),
-            new PubertySetting(HediffDefOf.LifeStages_FloweringBody, Off, All),
-            new PubertySetting(HediffDefOf.LifeStages_Scales, Off, Off),
-            new PubertySetting(HediffDefOf.LifeStages_Plumage, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_BodyHair, Off, Off, Skin),
+            new PubertySetting(HediffDefOf.LifeStages_PubicHair, Off, Off, Skin),
+            new PubertySetting(HediffDefOf.LifeStages_SporingBody, Off, Off, Skin),
+            new PubertySetting(HediffDefOf.LifeStages_Goo, Off, Off, Skin),
+            new PubertySetting(HediffDefOf.LifeStages_Bark, Off, All, Skin),
+            new PubertySetting(HediffDefOf.LifeStages_Leaves, Off, All, Skin),
+            new PubertySetting(HediffDefOf.LifeStages_FloweringBody, Off, All, Skin),
+            new PubertySetting(HediffDefOf.LifeStages_Scales, Off, Off, Skin),
+            new PubertySetting(HediffDefOf.LifeStages_Plumage, Off, Off, Skin),
+        };
+        
+        public static List<PubertySetting> boringDefault() => new List<PubertySetting>()
+        {
+            new PubertySetting(HediffDefOf.LifeStages_Womb, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Testes, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Pecs, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Breasts, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Ovotestis, Off, Off, Off),
+
+            new PubertySetting(HediffDefOf.LifeStages_GenericMale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_GenericFemale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_IncectFemale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_IncectFemaleAlt, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_IncectMale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_ShrimpMale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Simple, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_SimplePlant, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_PlantMale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_PlantFemale, Off, Off, Off),
+
+            new PubertySetting(HediffDefOf.LifeStages_BodyHair, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_PubicHair, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_SporingBody, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Goo, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Bark, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Leaves, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_FloweringBody, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Scales, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Plumage, Off, Off, Off),
+        };
+        
+         public static List<PubertySetting> platapus() => new List<PubertySetting>()
+        {
+            new PubertySetting(HediffDefOf.LifeStages_Womb, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Testes, Male, Off, Internal),
+            new PubertySetting(HediffDefOf.LifeStages_Pecs, Male, Off, Chest),
+            new PubertySetting(HediffDefOf.LifeStages_Breasts, Female, Off, Chest),
+            new PubertySetting(HediffDefOf.LifeStages_Ovotestis, Other, Off, Internal),
+
+            new PubertySetting(HediffDefOf.LifeStages_GenericMale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_GenericFemale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_IncectFemale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_IncectFemaleAlt, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_IncectMale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_ShrimpMale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Simple, All, Off, Groin),
+            new PubertySetting(HediffDefOf.LifeStages_SimplePlant, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_PlantMale, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_PlantFemale, Off, Off, Off),
+
+            new PubertySetting(HediffDefOf.LifeStages_BodyHair, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_PubicHair, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_SporingBody, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Goo, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Bark, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Leaves, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_FloweringBody, Off, Off, Off),
+            new PubertySetting(HediffDefOf.LifeStages_Scales, Off, All, Skin),
+            new PubertySetting(HediffDefOf.LifeStages_Plumage, Off, Off, Off),
         };
     }
 }

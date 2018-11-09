@@ -74,7 +74,7 @@ namespace HumanlikeLifeStages
 
         public static bool is_FemaleForBabies(Pawn pawn)
         {
-            return pawn.gender == Gender.Female || pawn.health.hediffSet.hediffs.Any(PubertyHelper.hasWomb) || hasBionicWomb(pawn);
+            return pawn.gender == Gender.Female || pawn.health.hediffSet.hediffs.Any(pawn.RacePubertySetting().hasWomb) || hasBionicWomb(pawn);
         }
 
         public static bool hasBionicWomb(Pawn pawn)

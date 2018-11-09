@@ -12,12 +12,7 @@ namespace HumanlikeLifeStages
         aliens
     }
 
-    public static class PubertySettingHelper
-    {
-        public static HediffDef Which(this PubertySetting that) =>
-            DefDatabase<HediffDef>.GetNamedSilentFail(that.which);
-        
-    }
+    
     public static class ModSettingRenderer
     {
         public static void aliens(this SettingsUIMod that, Rect inRect)
@@ -47,8 +42,9 @@ namespace HumanlikeLifeStages
                 ">"
             );
 
-            var rect = inRect.BottomPart(.8f).ContractedBy(4f);
-
+            var rect = inRect.BottomPart(.92f).ContractedBy(4f);
+            
+            
             that.RenderOptions(currentDef, rect, previous || next);
 
 
@@ -60,9 +56,10 @@ namespace HumanlikeLifeStages
             {
                 SettingsUIMod.current++;
             }
-            
-            SettingsUIMod.current %= SettingsUIMod.def.Count;
-            SettingsUIMod.current = Math.Abs(SettingsUIMod.current);
+
+            var defCount = SettingsUIMod.def.Count;
+            SettingsUIMod.current += defCount;
+            SettingsUIMod.current %= defCount;
 
             if (clicked)
             {
@@ -137,8 +134,18 @@ namespace HumanlikeLifeStages
 
             that.ThirdGendered(inRect);
 
+            var leftHalf = inRect.BottomHalf().BottomHalf().BottomHalf().BottomHalf().LeftHalf();
+
+            if (!ChildrenCrossMod.isChildrenModOn())
+            {
+                Widgets.CheckboxLabeled(leftHalf.TopHalf().ContractedBy(2f), "Child-Size Renderer (unsafe)",
+                    ref that.Settings.alicesRenderingMode);
+
+                leftHalf = leftHalf.BottomHalf();
+            }
+
             var clicked = Widgets.ButtonText(
-                inRect.BottomHalf().BottomHalf().BottomHalf().BottomHalf().LeftHalf(),
+                leftHalf,
                 "Aliens Configurations"
             );
 
@@ -175,30 +182,58 @@ namespace HumanlikeLifeStages
         
         private static void RenderOptions(this SettingsUIMod that, ThingDef currentDef, Rect rect, bool validate)
         {
-            if (that.Settings == null)
+            if (that?.Settings == null)
             {
                 throw new Exception("Why doesn't settings exist yet ?");
             }
-            List<PubertySetting> list = that.Settings.GetPubertySettingsFor(currentDef);
+            var settings = that.Settings.GetPubertySettingsFor(currentDef);
             
-            if (list == null)
+            if (settings?.list == null)
             {
-                throw new Exception("["+currentDef.defName+"] Race has no special settings? Alice said we should always get things here. Can you send her this?");
+                throw new Exception("["+(currentDef?.defName)+"] Race has no special settings? Alice said we should always get things here. Can you send her this?");
             }
-            var listCount = list.Count;
-            var splits = Split(rect, listCount).ToArray();
+            var listCount = settings.list.Count;
+            var splits = Split(rect, listCount+1).ToArray();
+
+            RenderTopPart(rect, settings);
+
+            RenderOptions(listCount, settings, splits);
+        }
+
+        private static void RenderTopPart(Rect rect, RacePubertySetting settings)
+        {
+            var topPart = new Rect(rect.x, rect.y, rect.width, rect.height / 10f);
+
+            var labelArea = SplitX(topPart, 10).ToArray();
+
+            Widgets.Label(labelArea[0],
+                "Organ");
 
 
+            Widgets.Label(labelArea[1],
+                "Secondary");
+            
+            Widgets.Label(labelArea[2],
+                "Where");
+
+            if (settings.instantPubertySetting == null)
+                settings.instantPubertySetting = false;
+            
+            Widgets.CheckboxLabeled(labelArea[labelArea.Length - 2], "Born Adult?", ref settings.instantPubertySetting.value);
+        }
+
+        private static void RenderOptions(int listCount, RacePubertySetting settings, Rect[] splits)
+        {
             for (int i = 0; i < listCount; i++)
             {
-                var setting = list[i];
-                var myRect = splits[i];
+                var setting = settings.list[i];
+                var myRect = splits[i + 1];
 
                 setting.WidgetDraw(myRect);
             }
         }
 
-        public static IEnumerable<Rect> Split(Rect rect, int count)
+        public static IEnumerable<Rect> Split(this Rect rect, int count)
         {
             float offset = rect.height / count;
             for (int i = 0; i <= count; i++)
@@ -206,6 +241,13 @@ namespace HumanlikeLifeStages
                 yield return new Rect(rect.x, rect.y + (i * offset), rect.width, offset);
             }
         }
-
+        public static IEnumerable<Rect> SplitX(this Rect rect, int count)
+        {
+            float offset = rect.width / count;
+            for (int i = 0; i <= count; i++)
+            {
+                yield return new Rect(rect.x + (i * offset), rect.y, offset, rect.height);
+            }
+        }
     }
 }

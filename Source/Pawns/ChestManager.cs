@@ -24,12 +24,12 @@ namespace HumanlikeLifeStages
                 || x.def == HediffDefOf.LifeStages_NormalChest);
         }
 
-        public static void pubertyChest(Pawn pawn, float severity)
+        public static void pubertyChest(Pawn pawn, float severity, RacePubertySetting pubertySettings)
         {
             intialChest(pawn);
 
             if (Rand.Value > .1f) return;
-            if (pawn.health.hediffSet.hediffs.Any(PubertyHelper.hasTestes) )
+            if (pawn.health.hediffSet.hediffs.Any(pubertySettings.hasTestes) )
             {
                 //more pec
                 MoreChest(pawn, HediffDefOf.LifeStages_Pecs);
@@ -37,7 +37,7 @@ namespace HumanlikeLifeStages
             else
             {
                 float boobGrowthChance = 0.05f;
-                if (PubertyHelper.RelaventHeDiffs(pawn.health.hediffSet).Any())
+                if (PubertyHelper.RelaventHeDiffs(pubertySettings, pawn.health.hediffSet).Any())
                 {
                     //ovaries keep pumping
                     boobGrowthChance = .5f;
@@ -66,7 +66,7 @@ namespace HumanlikeLifeStages
             }
             else
             {
-                hediff.Severity = Math.Min(hediff.Severity + 0.2f*Rand.Value, 1f);
+                hediff.Severity = Math.Min(hediff.Severity + 0.1f*Rand.Value, 1f);
             }
 
             IEnumerable<Hediff> enumerable = pawn.health.hediffSet.hediffs.Where(x =>
