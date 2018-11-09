@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-	<name>Humanlike Life Stages - Age Matters 2</name>
-	<author>AliceTries</author>
+	<name>[FIXED]Humanlike Life Stages - Age Matters 2</name>
+	<author>Community fork of AliceTries</author>
 	<targetVersion>1.0.0</targetVersion>
-	<description>Adds a childhood and puberty system to rimworld that I hope you enjoy.
+	<description>
+		It's a fixed emergency fork of Public Domain version of Humanlike Life Stages - Age Matters 2 by AliceTries.
+		
+		New description is in progress.
+		
+		
+		Original decripton:
+		
+		Adds a childhood and puberty system to rimworld that I hope you enjoy.
 		----
 		What?
 		- Successor to Age Matters to be used with WooHooer or Children, School and Families, or not.
@@ -45,5 +53,5 @@
 		Pubic Hair, Body Hair, Flower Petals, Leaves, Bark, Plumage, Scales, Goo, Sporing Body
 		
 	Enjoy - Alice</description>
-	<url>https://steamcommunity.com/id/AliceTries/myworkshopfiles/?appid=294100</url>
+	<url>https://github.com/inexcode/HumanlikeLifeStages</url>
 </ModMetaData>
