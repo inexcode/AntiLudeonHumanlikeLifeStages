@@ -207,4 +207,119 @@
         <label>Transgendered</label>
         <defaultLabelColor>(0.8, 0.498039, 0.196078)</defaultLabelColor>
     </HediffDef>
+    
+    <HediffDef ParentName="NaturalLifeStagePartBase">
+        <defName>LifeStages_PenisSize</defName>
+        <label>Penis Endowment</label>
+        <stages>
+            <li>
+                <statOffsets>
+                    <SocialImpact>.001</SocialImpact>
+                </statOffsets>
+            </li>
+            <li>
+                <label>Micro</label>
+                <minSeverity>-0.95</minSeverity>
+                <statOffsets>
+                    <SocialImpact>-.1</SocialImpact>
+                </statOffsets>
+            </li>
+            <li>
+                <label>Tiny</label>
+                <minSeverity>-0.9</minSeverity>
+                <statOffsets>
+                    <SocialImpact>-.025</SocialImpact>
+                </statOffsets>
+            </li>
+            <li>
+                <label>Chode</label>
+                <minSeverity>-0.8</minSeverity>
+                <statOffsets>
+                    <SocialImpact>-.02</SocialImpact>
+                </statOffsets>
+            </li>
+            <li>
+                <label>Small</label>
+                <minSeverity>-0.6</minSeverity>
+                <statOffsets>
+                    <SocialImpact>-.01</SocialImpact>
+                </statOffsets>
+            </li>
+            <li>
+                <label>Below Average</label>
+                <minSeverity>-0.2</minSeverity>
+                <statOffsets>
+                    <SocialImpact>.005</SocialImpact>
+                </statOffsets>
+                </li>
+            <li>
+                <label>Average</label>
+                <minSeverity>0.2</minSeverity>
+                <statOffsets>
+                    <SocialImpact>.005</SocialImpact>
+                </statOffsets>
+            </li>
+            <li>
+                <label>Above Average</label>
+                <minSeverity>0.6</minSeverity>
+                <statOffsets>
+                    <SocialImpact>.01</SocialImpact>
+                </statOffsets>
+            </li>
+            <li>
+                <label>Big</label>
+                <minSeverity>0.8</minSeverity>
+                <statOffsets>
+                    <SocialImpact>.02</SocialImpact>
+                </statOffsets>
+            </li>
+            <li>
+                <label>Monster Cock</label>
+                <minSeverity>0.9</minSeverity>
+                <statOffsets>
+                    <SocialImpact>.025</SocialImpact>
+                </statOffsets>
+            </li>
+            <li>
+                <label>Horse Cock</label>
+                <minSeverity>0.95</minSeverity>
+                <statOffsets>
+                    <SocialImpact>.1</SocialImpact>
+                </statOffsets>
+            </li>
+            </stages>
+    </HediffDef>
+            <HediffDef ParentName="NaturalLifeStagePartBase">
+        <defName>LifeStages_Foreskin</defName>
+        <label>Foreskin</label>
+        <stages>
+            <li>
+                <label>Severe Phimosis</label>
+            </li>
+            <li>
+                <label>Tight</label>
+            </li>
+            <li>
+                <label>Long</label>
+            </li>
+            <li>
+                <label>Intact/Natural</label>
+            </li>
+            <li>
+                <label>Restored</label>
+            </li>
+            <li>
+                <label>Partially Circumcised</label>
+            </li>
+           <li>
+                <label>Circumcised</label>
+            </li>
+            <li>
+                <label>Tight Circumcision</label>
+            </li>
+            <li>
+                <label>Botched Circumcision</label>
+            </li>
+        </stages>
+    </HediffDef>
 </Defs>
